@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crioser Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-principal: #003366;
+      --color-secundario: #00bcd4;
+      --gris-fondo: #f5f7fa;
+      --texto: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gris-fondo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
+      color: white;
+      padding: 40px 20px 100px; /* Increased bottom padding for nav */
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      position: relative;
+    }
+
+    header img {
+      width: 150px; /* Slightly smaller logo for general view */
+      max-width: 100%;
+      margin-bottom: -10px;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 2.5em; /* Adjusted for better scale */
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1.1em; /* Adjusted for better readability */
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .main-nav {
+        position: absolute;
+        bottom: 20px; /* Closer to the bottom of the clipped header */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+        gap: 10px; /* Reduced gap */
+        justify-content: center;
+        width: 90%; /* Wider navigation area */
+        max-width: 700px;
+        padding: 0 10px;
+    }
+
+    .nav-button {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 15px; /* Slightly smaller padding */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px; /* Adjusted border-radius */
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        white-space: nowrap;
+        font-size: 0.95em; /* Adjusted font size */
+    }
+
+    .nav-button:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        border-color: white;
+    }
+
+    section {
+      padding: 50px 20px; /* Adjusted padding */
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px; /* Adjusted margin */
+      font-size: 2em;
+      color: var(--color-principal);
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min width adjusted */
+      gap: 20px; /* Adjusted gap */
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px; /* Slightly smaller border-radius */
+      padding: 25px; /* Adjusted padding */
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08); /* Adjusted shadow */
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px); /* Adjusted hover effect */
+      background-color: #e5f6ff;
+    }
+
+    .card h3 {
+      color: var(--color-principal);
+      margin-bottom: 8px; /* Adjusted margin */
+      font-size: 1.3em;
+    }
+
+    .card p {
+      font-size: 0.9em; /* Adjusted font size */
+      opacity: 0.85;
+    }
+
+    .card::before {
+      content: "🔧";
+      font-size: 2em; /* Adjusted icon size */
+      display: block;
+      margin-bottom: 12px; /* Adjusted margin */
+    }
+
+    .about, .why-us {
+      background-color: white;
+      border-radius: 10px; /* Adjusted border-radius */
+      padding: 35px; /* Adjusted padding */
+      margin-bottom: 50px; /* Adjusted margin */
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05); /* Adjusted shadow */
+    }
+
+    .about p, .why-us p {
+      font-size: 1em; /* Adjusted font size */
+      line-height: 1.6;
+    }
+
+    /* Estilos para el modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 10px; /* Added padding for smaller screens */
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px; /* Adjusted padding */
+      border-radius: 8px; /* Adjusted border-radius */
+      width: 95%; /* Wider on smaller screens */
+      max-width: 550px; /* Adjusted max-width */
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Adjusted shadow */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-height: 95vh; /* Adjusted max height */
+      overflow: hidden;
+    }
+
+    .modal-body {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 10px; /* Adjusted padding */
+        box-sizing: border-box;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 8px; /* Adjusted position */
+        right: 12px; /* Adjusted position */
+        font-size: 1.4em; /* Adjusted font size */
+        cursor: pointer;
+        color: #888;
+    }
+    .modal-close:hover {
+        color: #333;
+    }
+
+    .modal-content h3 {
+      color: var(--color-principal);
+      margin-bottom: 12px; /* Adjusted margin */
+      font-size: 1.3em;
+    }
+
+    .modal-content input {
+      width: calc(100% - 20px); /* Adjusted width */
+      padding: 10px; /* Adjusted padding */
+      margin-top: 10px; /* Adjusted margin */
+      border: 1px solid #ddd;
+      border-radius: 4px; /* Adjusted border-radius */
+      font-size: 0.95em;
+    }
+
+    .modal-content button {
+      padding: 10px 18px; /* Adjusted padding */
+      margin-top: 18px; /* Adjusted margin */
+      background-color: var(--color-principal);
+      color: white;
+      border: none;
+      border-radius: 4px; /* Adjusted border-radius */
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      background-color: #004d99;
+    }
+
+    #resultado {
+        margin-top: 12px; /* Adjusted margin */
+        font-weight: bold;
+        color: var(--texto);
+        white-space: pre-line;
+        font-size: 0.9em;
+    }
+    #resultado.error {
+        color: #dc3545;
+    }
+
+    /* Estilos específicos para el calendario */
+    .calendar-container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px; /* Smaller gap */
+        margin-top: 15px; /* Adjusted margin */
+        max-width: 400px; /* Adjusted max width */
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.85em; /* Adjusted font size */
+    }
+    .calendar-header {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px; /* Adjusted margin */
+        font-size: 1.1em; /* Adjusted font size */
+        font-weight: bold;
+        color: var(--color-principal);
+    }
+    .calendar-day, .calendar-weekday {
+        padding: 6px; /* Adjusted padding */
+        border-radius: 4px; /* Adjusted border-radius */
+        text-align: center;
+    }
+    .calendar-weekday {
+        background-color: var(--color-secundario);
+        color: white;
+        font-weight: bold;
+    }
+    .calendar-day {
+        background-color: #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    .calendar-day:hover:not(.unavailable):not(.selected-day) {
+        background-color: #e0e0e0;
+    }
+    .calendar-day.unavailable {
+        background-color: #ffe0e0;
+        color: #888;
+        cursor: not-allowed;
+    }
+    .calendar-day.selected-day {
+        background-color: var(--color-principal);
+        color: white;
+        font-weight: bold;
+    }
+    .calendar-nav {
+        cursor: pointer;
+        font-size: 1.3em; /* Adjusted font size */
+        padding: 0 3px; /* Adjusted padding */
+    }
+
+    .modal-step-2 {
+        text-align: left;
+    }
+    .modal-step-2 label {
+        display: block;
+        margin-top: 12px; /* Adjusted margin */
+        font-weight: bold;
+        color: var(--texto);
+        font-size: 0.95em;
+    }
+    .modal-step-2 input {
+        width: 100%;
+        margin-top: 4px; /* Adjusted margin */
+        margin-bottom: 8px; /* Adjusted margin */
+    }
+    .modal-step-2 .calendar-info {
+        text-align: center;
+        font-size: 0.8em; /* Adjusted font size */
+        color: #666;
+        margin-top: 8px; /* Adjusted margin */
+    }
+    .modal-step-2 .whatsapp-button {
+        background-color: #25d366;
+    }
+    .modal-step-2 .whatsapp-button:hover {
+        background-color: #1da851;
+    }
+
+    /* Estilos para la selección de horarios */
+    .time-slots-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px; /* Adjusted gap */
+        justify-content: center;
+        margin-top: 15px; /* Adjusted margin */
+        margin-bottom: 12px; /* Adjusted margin */
+        padding: 8px; /* Adjusted padding */
+        border: 1px solid #eee;
+        border-radius: 6px; /* Adjusted border-radius */
+        background-color: #f9f9f9;
+    }
+    .time-slot-button {
+        padding: 7px 12px; /* Adjusted padding */
+        border: 1px solid var(--color-secundario);
+        border-radius: 4px; /* Adjusted border-radius */
+        background-color: white;
+        color: var(--color-principal);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.85em; /* Adjusted font size */
+    }
+    .time-slot-button:hover:not(.unavailable):not(.selected-time) {
+        background-color: var(--color-secundario);
+        color: white;
+    }
+    .time-slot-button.unavailable {
+        background-color: #ffe0e0;
+        color: #888;
+        border-color: #f0c0c0;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+    .time-slot-button.selected-time {
+        background-color: var(--color-principal);
+        color: white;
+        border-color: var(--color-principal);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px; /* Adjusted padding */
+      background-color: var(--color-principal);
+      color: white;
+      font-size: 0.9em;
+    }
+
+    /* Estilos del botón flotante "Volver Arriba" */
+    #scrollToTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 15px; /* Closer to bottom */
+        left: 15px; /* Closer to left */
+        z-index: 999;
+        background-color: var(--color-principal);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 45px; /* Slightly smaller */
+        height: 45px;
+        font-size: 20px; /* Adjusted font size */
+        line-height: 45px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Adjusted shadow */
+        transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
+        opacity: 0.8;
+    }
+
+    #scrollToTopBtn:hover {
+        background-color: #004d99;
+        opacity: 1;
+        transform: translateY(-2px); /* Adjusted hover effect */
+    }
+
+    /* Estilos para la sección de contacto - NO FLOTANTE */
+    .contact-info {
+      padding: 50px 20px; /* Adjusted padding */
+      background-color: var(--gris-fondo);
+      text-align: center;
+    }
+
+    .contact-buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Adjusted gap */
+        margin-top: 25px; /* Adjusted margin */
+    }
+
+    .contact-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px; /* Adjusted size */
+        height: 55px;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Adjusted shadow */
+        transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0.9;
+        flex-shrink: 0;
+    }
+
+    .contact-button img {
+        width: 30px; /* Adjusted logo size */
+        height: 30px;
+    }
+
+    .contact-button.whatsapp {
+        background-color: #25d366;
+    }
+
+    .contact-button.gmail {
+        background-color: #dd4b39;
+    }
+
+    .contact-button:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+
+    /* Media Queries for enhanced responsiveness */
+    @media (max-width: 768px) {
+      header {
+        padding: 30px 15px 80px; /* More compact header */
+      }
+      header h1 {
+        font-size: 2.2em;
+      }
+      header p {
+        font-size: 1em;
+      }
+      .main-nav {
+        flex-direction: column;
+        align-items: center;
+        bottom: 15px;
+        gap: 8px;
+        width: 95%; /* Wider on small screens */
+      }
+      .nav-button {
+        width: 90%; /* Buttons take more width */
+        max-width: 250px; /* Limit button width */
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+      section {
+        padding: 40px 15px;
+      }
+      .section-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+      }
+      .services {
+        grid-template-columns: 1fr; /* Single column for services on small screens */
+      }
+      .card {
+        padding: 20px;
+      }
+      .card h3 {
+        font-size: 1.2em;
+      }
+      .card p {
+        font-size: 0.85em;
+      }
+      .about, .why-us {
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+      .about p, .why-us p {
+        font-size: 0.95em;
+      }
+      .modal-content {
+        width: 98%; /* Even wider on very small screens */
+        padding: 15px;
+      }
+      .modal-content h3 {
+        font-size: 1.2em;
+      }
+      .modal-content input, .modal-content button {
+        padding: 10px;
+        font-size: 0.9em;
+      }
+      .calendar-container {
+        max-width: 100%;
+        gap: 2px;
+        font-size: 0.8em;
+      }
+      .calendar-day, .calendar-weekday {
+        padding: 5px;
+      }
+      .time-slot-button {
+        padding: 6px 10px;
+        font-size: 0.8em;
+      }
+      .contact-buttons-container {
+        gap: 10px;
+      }
+      .contact-button {
+        width: 50px;
+        height: 50px;
+      }
+      .contact-button img {
+        width: 28px;
+        height: 28px;
+      }
+      #scrollToTopBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+        bottom: 10px;
+        left: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+        header {
+            padding-top: 25px;
+            padding-bottom: 70px;
+        }
+        header img {
+            width: 120px;
+        }
+        header h1 {
+            font-size: 1.8em;
+        }
+        header p {
+            font-size: 0.9em;
+        }
+        .nav-button {
+            width: 100%; /* Full width buttons on very small screens */
+            max-width: 200px;
+        }
+        .section-title {
+            font-size: 1.6em;
+            margin-bottom: 25px;
+        }
+        .card {
+            padding: 18px;
+        }
+        .card h3 {
+            font-size: 1.1em;
+        }
+        .card p {
+            font-size: 0.8em;
+        }
+        .about, .why-us {
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .about p, .why-us p {
+            font-size: 0.88em;
+        }
+        .modal-content {
+            padding: 12px;
+        }
+        .modal-content h3 {
+            font-size: 1.1em;
+        }
+        .modal-content input {
+            font-size: 0.85em;
+            padding: 8px;
+        }
+        .modal-content button {
+            font-size: 0.85em;
+            padding: 8px 15px;
+        }
+        #resultado {
+            font-size: 0.8em;
+        }
+        .calendar-container {
+            font-size: 0.75em;
+        }
+        .calendar-header {
+            font-size: 1em;
+        }
+        .time-slot-button {
+            font-size: 0.75em;
+            padding: 5px 8px;
+        }
+        .contact-button {
+            width: 45px;
+            height: 45px;
+        }
+        .contact-button img {
+            width: 25px;
+            height: 25px;
+        }
+        #scrollToTopBtn {
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            line-height: 35px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="Logo.png" alt="Logo Crioser" />
+    <h1>Crioser Solutions</h1>
+    <nav class="main-nav">
+      <a href="#services-section" class="nav-button">Servicios</a>
+      <a href="#about-section" class="nav-button">¿Quiénes somos?</a>
+      <a href="#why-us-section" class="nav-button">¿Por qué elegirnos?</a>
+    </nav>
+  </header>
+
+  <section id="services-section">
+    <h2 class="section-title">🚀 Servicios que ofrecemos</h2>
+    <div class="services">
+      <div class="card" onclick="selectService('mantenimiento-correctivo-ac')">
+        <h3>Mantenimiento Correctivo - Aires</h3>
+        <p>Detectamos y corregimos fallas en tus aires acondicionados para que sigan funcionando como nuevos.</p>
+      </div>
+      <div class="card" onclick="selectService('mantenimiento-correctivo-neveras')">
+        <h3>Mantenimiento Correctivo - Neveras</h3>
+        <p>Reparamos neveras domésticas y comerciales con repuestos de alta calidad y servicio rápido.</p>
+      </div>
+      <div class="card" onclick="selectService('mantenimiento-preventivo-ac')">
+        <h3>Mantenimiento Preventivo - Aires</h3>
+        <p>Evita daños futuros y mejora el rendimiento de tus equipos con mantenimiento periódico.</p>
+      </div>
+      <div class="card" onclick="selectService('mantenimiento-preventivo-neveras')">
+        <h3>Mantenimiento Preventivo - Neveras</h3>
+        <p>Limpieza, revisión técnica y calibración para que tu refrigeración dure más y consuma menos.</p>
+      </div>
+      <div class="card" onclick="selectService('instalacion-ac')">
+        <h3>Instalación y Desinstalación</h3>
+        <p>Instalamos y desinstalamos sistemas de climatización con total seguridad y garantía.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-section" class="about">
+    <h2 class="section-title">❤️ ¿Quiénes somos?</h2>
+    <p>En <strong> Crioser Solutions </strong> creemos que un buen clima lo cambia todo. Por eso, no solo arreglamos equipos: creamos ambientes ideales para hogares, negocios y sueños. Somos técnicos, sí... pero también somos humanos, cercanos y apasionados por lo que hacemos. Al trabajar con nosotros, no contratas una empresa, te unes a una familia comprometida con tu bienestar.</p>
+  </section>
+
+  <section id="why-us-section" class="why-us">
+    <h2 class="section-title">💡 ¿Por qué elegirnos?</h2>
+    <p>
+      ✔️ Técnicos profesionales con experiencia real.<br>
+      ✔️ Precios justos, sin sorpresas ni cobros ocultos.<br>
+      ✔️ Atención personalizada, puntual y amable.<br>
+      ✔️ Calidad garantizada y repuestos originales.<br>
+      ✔️ ¡Y porque nuestros clientes nos recomiendan una y otra vez!
+    </p>
+  </section>
+
+  <section class="contact-info">
+    <h2 class="section-title">¿Listo para climatizar tu espacio?</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Contáctanos para una asesoría personalizada o si tienes alguna duda.</p>
+    <div class="contact-buttons-container">
+      <a href="https://wa.me/573239053250?text=Hola,%20necesito%20más%20información%20sobre..." target="_blank" class="contact-button whatsapp" title="Contactar por WhatsApp">
+        <img src="whatsapplogo.webp" alt="WhatsApp">
+      </a>
+      <a href="mailto:criosersolutions@gmail.com" class="contact-button gmail" title="Contactar por Correo">
+        <img src="gmaillogo.png" alt="Gmail">
+      </a>
+    </div>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="modal-close" onclick="cerrarModal()">&times;</span>
+      <div id="modal-step-1" class="modal-body">
+        <h3>Calcular Precio del Servicio</h3>
+        <p id="modal-service-name" style="font-size: 1.1em; color: var(--color-secundario); margin-bottom: 15px;"></p>
+        <input type="text" id="direccion" placeholder="Ej: Cra 50 #72-15" />
+        <input type="text" id="barrio" placeholder="Ej: Riomar, Boston, Lipaya" />
+        <button onclick="verificarZona()">Calcular Precio</button>
+        <p id="resultado"></p>
+        <button id="solicitar-btn" class="hidden" onclick="mostrarFormularioContacto()">Solicitar Servicio</button>
+      </div>
+
+      <div id="modal-step-2" class="hidden modal-step-2 modal-body">
+        <h3>Completa tus datos y selecciona la fecha y hora</h3>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Tu Nombre Completo" required />
+
+        <label for="telefono">Número de Teléfono:</label>
+        <input type="tel" id="telefono" placeholder="Ej: 3001234567" required />
+
+        <label for="correo">Correo Electrónico (Opcional):</label>
+        <input type="email" id="correo" placeholder="ejemplo@dominio.com" />
+
+        <h4>Selecciona una fecha:</h4>
+        <div class="calendar-header">
+            <span class="calendar-nav" onclick="changeMonth(-1)">&lt;</span>
+            <span id="current-month-year"></span>
+            <span class="calendar-nav" onclick="changeMonth(1)">&gt;</span>
+        </div>
+        <div class="calendar-container" id="calendar"></div>
+        <p class="calendar-info">Días disponibles en verde, ocupados en rojo claro. Sábados no disponibles.</p>
+        <p id="selected-date-info" style="font-weight: bold; margin-top: 10px;"></p>
+
+        <h4 id="time-slots-title" class="hidden">Selecciona una hora:</h4>
+        <div id="time-slots-container" class="time-slots-container hidden">
+
+</div>
+        <p id="selected-time-info" style="font-weight: bold; margin-top: 5px;"></p>
+
+        <button class="whatsapp-button" onclick="enviarWhatsapp()">Enviar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Crioser Solutions – Mejoramos tu mundo 🌍</p>
+  </footer>
+
+  <button onclick="scrollToTop()" id="scrollToTopBtn" title="Volver arriba">↑</button>
+
+  <script>
+    let selectedService = '';
+    let precioVisita = 0;
+    let currentZona = '';
+    let selectedDate = null;
+    let selectedTime = null;
+
+    // Configuración del número de WhatsApp y mensaje
+    const WHATSAPP_NUMBER = '3239053250'; // Número de WhatsApp para el formulario de servicio
+    const COUNTRY_CODE = '57'; // Código de país de Colombia para WhatsApp
+
+    const serviceNames = {
+        'mantenimiento-correctivo-ac': 'Mantenimiento Correctivo - Aires',
+        'mantenimiento-correctivo-neveras': 'Mantenimiento Correctivo - Neveras',
+        'mantenimiento-preventivo-ac': 'Mantenimiento Preventivo - Aires',
+        'mantenimiento-preventivo-neveras': 'Mantenimiento Preventivo - Neveras',
+        'instalacion-ac': 'Instalación y Desinstalación'
+    };
+
+    // --- MODIFICA LOS PRECIOS AQUÍ ---
+    const preciosServicios = {
+        'mantenimiento-correctivo-ac': { base: 10000, tipo: 'visita', norte: 15000, centro: 15000, sur: 1000 },
+        'mantenimiento-correctivo-neveras': { base: 10000, tipo: 'visita', norte: 17000, centro: 17000, sur: 12000 },
+        'mantenimiento-preventivo-ac': { base: 10000, tipo: 'fijo', norte: 30000, centro: 25000, sur: 25000 },
+        'mantenimiento-preventivo-neveras': { base: 10000, tipo: 'fijo', norte: 35000, centro: 27000, sur: 27000 },
+        'instalacion-ac': { base: 10000, tipo: 'visita', norte: 20000, centro: 20000, sur: 20000 }
+    };
+
+    // --- HORARIOS DISPONIBLES ---
+    const availableTimeSlots = [
+        '08:00 AM', '10:00 AM',
+        '02:00 PM', '04:00 PM'
+    ];
+
+    // --- DÍAS Y HORAS OCUPADAS (CLIENT-SIDE) ---
+    const occupiedSlots = [];
+
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+
+    function selectService(service) {
+      selectedService = service;
+      document.getElementById('modal-service-name').innerText = `Servicio: ${serviceNames[service]}`;
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('resultado').innerText = '';
+      document.getElementById('resultado').classList.remove('error');
+      document.getElementById('solicitar-btn').classList.add('hidden');
+
+      document.getElementById('direccion').value = '';
+      document.getElementById('barrio').value = '';
+
+      document.getElementById('modal-step-1').classList.remove('hidden');
+      document.getElementById('modal-step-2').classList.add('hidden');
+
+      document.getElementById('nombre').value = '';
+      document.getElementById('telefono').value = '';
+      document.getElementById('correo').value = '';
+      selectedDate = null;
+      selectedTime = null;
+      document.getElementById('selected-date-info').innerText = '';
+      document.getElementById('selected-time-info').innerText = '';
+      document.getElementById('time-slots-title').classList.add('hidden');
+      document.getElementById('time-slots-container').classList.add('hidden');
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('direccion').value = '';
+      document.getElementById('barrio').value = '';
+      document.getElementById('nombre').value = '';
+      document.getElementById('telefono').value = '';
+      document.getElementById('correo').value = '';
+      document.getElementById('resultado').innerText = '';
+      document.getElementById('resultado').classList.remove('error');
+      document.getElementById('solicitar-btn').classList.add('hidden');
+      selectedDate = null;
+      selectedTime = null;
+      document.getElementById('selected-date-info').innerText = '';
+      document.getElementById('selected-time-info').innerText = '';
+      document.getElementById('time-slots-title').classList.add('hidden');
+      document.getElementById('time-slots-container').classList.add('hidden');
+
+      document.getElementById('modal-step-1').classList.remove('hidden');
+      document.getElementById('modal-step-2').classList.add('hidden');
+    }
+
+    function verificarZona() {
+      const barrio = document.getElementById('barrio').value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const resultadoElement = document.getElementById("resultado");
+      resultadoElement.innerText = '';
+      resultadoElement.classList.remove('error');
+      document.getElementById('solicitar-btn').classList.add('hidden');
+
+      const norte = ["riomar", "altos del limon", "villa campestre", "miramar", "buenavista", "el golf", "ciudad jardin", "altamira", "andalucia", "paraiso", "castellana", "alameda del rio", "las delicias"];
+      const centro = ["el prado", "boston", "bellavista", "barrio abajo", "montecristo", "centro historico", "colombia", "recreo", "san felipe", "rosario"];
+      const sur = ["los andes", "san jose", "la sierra", "las nieves", "simon bolivar", "la victoria", "villa san pedro", "los robles", "el bosque", "lipaya", "ciudad modesto", "evaristo sourdis", "la paz", "olivos", "caribe verde"];
+
+      let zonaIdentificada = '';
+
+      if (norte.some(b => barrio.includes(b))) {
+        zonaIdentificada = 'norte';
+      } else if (centro.some(b => barrio.includes(b))) {
+        zonaIdentificada = 'centro';
+      } else if (sur.some(b => barrio.includes(b))) {
+        zonaIdentificada = 'sur';
+      }
+      currentZona = zonaIdentificada;
+
+      if (zonaIdentificada && preciosServicios[selectedService]) {
+        const servicioInfo = preciosServicios[selectedService];
+        const precioBase = servicioInfo.base;
+        const modificadorZona = servicioInfo[zonaIdentificada];
+        let precioFinal = precioBase + modificadorZona;
+
+        let mensajePrecio = `📍 Zona detectada: ${zonaIdentificada.toUpperCase()}\n💰 Precio estimado: $${precioFinal.toLocaleString('es-CO')}`;
+
+        if (servicioInfo.tipo === 'visita') {
+            mensajePrecio += `\n(Este valor corresponde a la visita técnica. Se descontará del costo total del servicio si lo realizas con nosotros.)`;
+            precioVisita = precioFinal;
+        } else {
+            precioVisita = 0;
+        }
+        resultadoElement.innerText = mensajePrecio;
+        document.getElementById('solicitar-btn').classList.remove('hidden');
+      } else {
+        resultadoElement.innerText = "❌ Lo sentimos, no pudimos determinar la zona o no prestamos servicio en ese barrio.";
+        resultadoElement.classList.add('error');
+        document.getElementById('solicitar-btn').classList.add('hidden');
+      }
+    }
+
+    function mostrarFormularioContacto() {
+        document.getElementById('modal-step-1').classList.add('hidden');
+        document.getElementById('modal-step-2').classList.remove('hidden');
+        renderCalendar();
+    }
+
+    // --- Funciones del Calendario y Horarios ---
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const weekdayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+
+    function renderCalendar() {
+        const calendarEl = document.getElementById('calendar');
+        const monthYearEl = document.getElementById('current-month-year');
+        calendarEl.innerHTML = '';
+
+        monthYearEl.innerText = `${monthNames[currentMonth]} ${currentYear}`;
+
+        weekdayNames.forEach(day => {
+            const weekdayDiv = document.createElement('div');
+            weekdayDiv.classList.add('calendar-weekday');
+            weekdayDiv.innerText = day;
+            calendarEl.appendChild(weekdayDiv);
+        });
+
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            const emptyDiv = document.createElement('div');
+            emptyDiv.classList.add('calendar-day');
+            emptyDiv.style.backgroundColor = 'transparent';
+            emptyDiv.style.cursor = 'default';
+            calendarEl.appendChild(emptyDiv);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('calendar-day');
+            dayDiv.innerText = day;
+
+            const fullDate = new Date(currentYear, currentMonth, day);
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            // Bloquear días pasados y sábados (día de la semana 6 es sábado)
+            if (fullDate < today || fullDate.getDay() === 6) {
+                dayDiv.classList.add('unavailable');
+            }
+            // Marcar el día seleccionado
+            else if (selectedDate && selectedDate.toDateString() === fullDate.toDateString()) {
+                dayDiv.classList.add('selected-day');
+                dayDiv.addEventListener('click', () => selectDate(fullDate, dayDiv));
+            }
+            else {
+                dayDiv.addEventListener('click', () => selectDate(fullDate, dayDiv));
+            }
+            calendarEl.appendChild(dayDiv);
+        }
+        renderTimeSlots();
+    }
+
+    function changeMonth(offset) {
+        currentMonth += offset;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        selectedDate = null;
+        selectedTime = null;
+        document.getElementById('selected-date-info').innerText = '';
+        document.getElementById('selected-time-info').innerText = '';
+        document.getElementById('time-slots-title').classList.add('hidden');
+        document.getElementById('time-slots-container').classList.add('hidden');
+        renderCalendar();
+    }
+
+    function selectDate(date, element) {
+        // Si el día ya está seleccionado, deseleccionarlo
+        if (element.classList.contains('unavailable')) {
+            return; // No hacer nada si el día no está disponible
+        }
+        if (selectedDate && selectedDate.toDateString() === date.toDateString()) {
+            selectedDate = null;
+            element.classList.remove('selected-day');
+            document.getElementById('selected-date-info').innerText = '';
+            selectedTime = null;
+            document.getElementById('selected-time-info').innerText = '';
+            document.getElementById('time-slots-title').classList.add('hidden');
+            document.getElementById('time-slots-container').classList.add('hidden');
+        } else {
+            const prevSelected = document.querySelector('.calendar-day.selected-day');
+            if (prevSelected) {
+                prevSelected.classList.remove('selected-day');
+            }
+            element.classList.add('selected-day');
+            selectedDate = date;
+            document.getElementById('selected-date-info').innerText = `Fecha seleccionada: ${date.toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+            selectedTime = null;
+            document.getElementById('selected-time-info').innerText = '';
+            renderTimeSlots();
+        }
+    }
+
+    function renderTimeSlots() {
+        const timeSlotsContainer = document.getElementById('time-slots-container');
+        const timeSlotsTitle = document.getElementById('time-slots-title');
+        timeSlotsContainer.innerHTML = '';
+
+        if (!selectedDate) {
+            timeSlotsTitle.classList.add('hidden');
+            timeSlotsContainer.classList.add('hidden');
+            return;
+        }
+
+        timeSlotsTitle.classList.remove('hidden');
+        timeSlotsContainer.classList.remove('hidden');
+
+        const formattedSelectedDate = `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}-${selectedDate.getDate().toString().padStart(2, '0')}`;
+        const now = new Date();
+
+        availableTimeSlots.forEach(slot => {
+            const timeButton = document.createElement('button');
+            timeButton.classList.add('time-slot-button');
+            timeButton.innerText = slot;
+
+            const [timePart, ampm] = slot.split(' ');
+            let [hours, minutes] = timePart.split(':').map(Number);
+            if (ampm === 'PM' && hours !== 12) hours += 12;
+            if (ampm === 'AM' && hours === 12) hours = 0;
+
+            const slotDateTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hours, minutes);
+
+            const isOccupied = occupiedSlots.some(occupied =>
+                occupied.date === formattedSelectedDate && occupied.time === slot
+            );
+            const isPast = slotDateTime < now;
+
+            if (isOccupied || isPast) {
+                timeButton.classList.add('unavailable');
+                timeButton.disabled = true;
+            } else {
+                timeButton.addEventListener('click', () => selectTime(slot, timeButton));
+                if (selectedTime === slot) {
+                    timeButton.classList.add('selected-time');
+                }
+            }
+            timeSlotsContainer.appendChild(timeButton);
+        });
+    }
+
+    function selectTime(time, element) {
+        const prevSelected = document.querySelector('.time-slot-button.selected-time');
+        if (prevSelected) {
+            prevSelected.classList.remove('selected-time');
+        }
+
+        element.classList.add('selected-time');
+        selectedTime = time;
+        document.getElementById('selected-time-info').innerText = `Hora seleccionada: ${time}`;
+    }
+
+    // --- Enviar WhatsApp desde el formulario de servicio ---
+    function enviarWhatsapp() {
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const correo = document.getElementById('correo').value;
+        const direccion = document.getElementById('direccion').value;
+        const barrio = document.getElementById('barrio').value;
+
+        if (!nombre || !telefono || !selectedDate || !selectedTime) {
+            alert('Por favor, completa tu Nombre, Número de Teléfono, y selecciona una fecha y una hora.');
+            return;
+        }
+
+        const serviceName = serviceNames[selectedService];
+        const formattedDate = selectedDate.toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const formattedDateForBlocking = `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}-${selectedDate.getDate().toString().padStart(2, '0')}`;
+
+
+        let message = `Hola, estoy solicitando el servicio de *${serviceName}* en la dirección *${direccion}*, en el barrio *${barrio}*, para el día *${formattedDate}* a las *${selectedTime}*.`;
+        message += `\nMi nombre es ${nombre}, mi teléfono es ${telefono}`;
+        if (correo) {
+            message += ` y mi correo electrónico es ${correo}.`;
+        } else {
+            message += `.`;
+        }
+
+        if (preciosServicios[selectedService].tipo === 'visita' && precioVisita > 0) {
+             message += `\nEl precio de la visita técnica es de $${precioVisita.toLocaleString('es-CO')}.`;
+        }
+
+        occupiedSlots.push({ date: formattedDateForBlocking, time: selectedTime });
+        renderTimeSlots();
+        alert('¡Solicitud enviada! El horario ha sido marcado como ocupado para esta sesión.');
+
+        const whatsappURL = `https://wa.me/${+57}${3239053250}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, '_blank');
+
+        cerrarModal();
+    }
+
+    // --- Funcionalidad del botón flotante "Volver Arriba" ---
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    // Mostrar u ocultar el botón según el scroll
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    // Función para ir arriba
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCalendar);
+  </script>
+</body>
+</html>
