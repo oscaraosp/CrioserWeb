@@ -573,9 +573,16 @@
         header p {
             font-size: 0.9em;
         }
+        .main-nav {
+            flex-direction: column; /* Ensure vertical stacking on very small screens */
+            align-items: center;
+            bottom: 15px;
+            gap: 8px;
+            width: 95%;
+        }
         .nav-button {
             width: 100%; /* Full width buttons on very small screens */
-            max-width: 200px;
+            max-width: 200px; /* Limit max-width to keep them from being too wide */
         }
         .section-title {
             font-size: 1.6em;
@@ -584,6 +591,9 @@
         .services-intro {
             font-size: 0.9em;
             padding: 0 5px;
+        }
+        .services {
+            grid-template-columns: 1fr; /* Explicitly single column for services */
         }
         .card {
             padding: 18px;
@@ -627,6 +637,10 @@
         .time-slot-button {
             font-size: 0.75em;
             padding: 5px 8px;
+        }
+        .contact-buttons-container {
+            flex-direction: row; /* Keep contact buttons in a row for small screens, they are small enough */
+            gap: 10px;
         }
         .contact-button {
             width: 45px;
@@ -983,10 +997,12 @@
     }
 
     function selectDate(date, element) {
-        // Si el día ya está seleccionado, deseleccionarlo
+        // If the day is unavailable, do nothing
         if (element.classList.contains('unavailable')) {
-            return; // No hacer nada si el día no está disponible
+            return;
         }
+
+        // If the same day is clicked, deselect it
         if (selectedDate && selectedDate.toDateString() === date.toDateString()) {
             selectedDate = null;
             element.classList.remove('selected-day');
@@ -996,18 +1012,21 @@
             document.getElementById('time-slots-title').classList.add('hidden');
             document.getElementById('time-slots-container').classList.add('hidden');
         } else {
+            // Deselect any previously selected day
             const prevSelected = document.querySelector('.calendar-day.selected-day');
             if (prevSelected) {
                 prevSelected.classList.remove('selected-day');
             }
+            // Select the new day
             element.classList.add('selected-day');
             selectedDate = date;
             document.getElementById('selected-date-info').innerText = `Fecha seleccionada: ${date.toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
-            selectedTime = null;
+            selectedTime = null; // Reset selected time when date changes
             document.getElementById('selected-time-info').innerText = '';
             renderTimeSlots();
         }
     }
+
 
     function renderTimeSlots() {
         const timeSlotsContainer = document.getElementById('time-slots-container');
@@ -1101,7 +1120,7 @@
         renderTimeSlots();
         alert('¡Solicitud enviada! El horario ha sido marcado como ocupado para esta sesión.');
 
-        const whatsappURL = `https://wa.me/${+57}${3239053250}?text=${encodeURIComponent(message)}`;
+        const whatsappURL = `https://wa.me/${COUNTRY_CODE}${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, '_blank');
 
         cerrarModal();
