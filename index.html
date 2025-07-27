@@ -24,149 +24,147 @@
       background: var(--gris-fondo);
       color: var(--texto);
       line-height: 1.6;
-      margin: 0; /* Asegurar que no haya márgenes inesperados */
     }
 
     header {
       background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
       color: white;
-      padding: 30px 20px 60px; /* Ajuste de padding */
+      padding: 40px 20px 100px; /* Increased bottom padding for nav */
       text-align: center;
       clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
       position: relative;
-      display: flex; /* Habilitar flexbox para la cabecera */
-      flex-direction: column; /* Apilar elementos verticalmente por defecto */
-      align-items: center; /* Centrar elementos horizontalmente */
-      justify-content: center; /* Centrar elementos verticalmente */
     }
 
     header img {
-      width: 120px; /* Ajuste del tamaño del logo */
-      max-width: 80%;
-      margin-bottom: 10px;
+      width: 150px; /* Slightly smaller logo for general view */
+      max-width: 100%;
+      margin-bottom: -10px;
       height: auto;
     }
 
     header h1 {
-      font-size: 2em; /* Ajuste del tamaño del título */
-      margin-bottom: 5px;
+      font-size: 2.5em; /* Adjusted for better scale */
+      margin-bottom: 8px;
     }
 
     header p {
-      font-size: 1em;
+      font-size: 1.1em; /* Adjusted for better readability */
       opacity: 0.9;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .main-nav {
-      position: relative; /* Cambiar a relative para el flujo normal */
-      bottom: auto; /* Eliminar posicionamiento absoluto desde abajo */
-      left: auto; /* Eliminar posicionamiento absoluto desde la izquierda */
-      transform: none; /* Eliminar transformación */
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px; /* Espacio desde el texto de la cabecera */
-      padding: 0 10px;
-      flex-wrap: wrap; /* Permitir que los botones se envuelvan */
+        position: absolute;
+        bottom: 20px; /* Closer to the bottom of the clipped header */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+        gap: 10px; /* Reduced gap */
+        justify-content: center;
+        width: 90%; /* Wider navigation area */
+        max-width: 700px;
+        padding: 0 10px;
     }
 
     .nav-button {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 8px 15px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-      white-space: nowrap;
-      font-size: 0.9em;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 15px; /* Slightly smaller padding */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px; /* Adjusted border-radius */
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        white-space: nowrap;
+        font-size: 0.95em; /* Adjusted font size */
     }
 
     .nav-button:hover {
-      background-color: rgba(255, 255, 255, 0.4);
-      border-color: white;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-color: white;
     }
 
     section {
-      padding: 30px 20px;
+      padding: 50px 20px; /* Adjusted padding */
       max-width: 1200px;
       margin: auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 25px;
-      font-size: 1.8em;
+      margin-bottom: 35px; /* Adjusted margin */
+      font-size: 2em;
       color: var(--color-principal);
     }
 
     .services-intro {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1em;
-      line-height: 1.6;
-      color: var(--texto);
-      padding: 0 15px;
+        text-align: left; /* Changed from center to left */
+        margin-bottom: 30px;
+        font-size: 1.1em;
+        line-height: 1.7;
+        color: var(--texto);
+        padding: 0 15px;
     }
     .services-intro strong {
-      color: var(--color-principal);
+        color: var(--color-principal);
     }
 
 
     .services {
-      display: flex; /* Usar flexbox para los servicios */
-      flex-wrap: wrap; /* Permitir que se envuelvan en pantallas pequeñas */
-      gap: 15px; /* Espacio entre los recuadros */
-      justify-content: center; /* Centrar los recuadros */
+      display: flex; /* Changed to flex for carousel effect */
+      overflow-x: auto; /* Enable horizontal scrolling */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      scroll-snap-type: x mandatory; /* Snap to cards */
+      gap: 20px; /* Adjusted gap */
+      padding-bottom: 15px; /* Add some padding for scrollbar */
     }
 
     .card {
       background: white;
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 12px; /* Slightly smaller border-radius */
+      padding: 25px; /* Adjusted padding */
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08); /* Adjusted shadow */
       transition: all 0.3s ease;
       cursor: pointer;
-      min-width: 280px; /* Ancho mínimo para cada tarjeta */
-      flex-grow: 1; /* Las tarjetas crecen para llenar el espacio disponible */
+      flex: 0 0 280px; /* Fixed width for cards in carousel, preventing shrinking */
+      scroll-snap-align: start; /* Snap cards to the start of the scroll area */
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px); /* Adjusted hover effect */
       background-color: #e5f6ff;
     }
 
     .card h3 {
       color: var(--color-principal);
-      margin-bottom: 8px;
-      font-size: 1.2em;
+      margin-bottom: 8px; /* Adjusted margin */
+      font-size: 1.3em;
     }
 
     .card p {
-      font-size: 0.9em;
+      font-size: 0.9em; /* Adjusted font size */
       opacity: 0.85;
     }
 
     .card::before {
       content: "🔧";
-      font-size: 1.8em;
+      font-size: 2em; /* Adjusted icon size */
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 12px; /* Adjusted margin */
     }
 
     .about, .why-us {
       background-color: white;
-      border-radius: 10px;
-      padding: 30px;
-      margin-bottom: 40px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      border-radius: 10px; /* Adjusted border-radius */
+      padding: 35px; /* Adjusted padding */
+      margin-bottom: 50px; /* Adjusted margin */
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05); /* Adjusted shadow */
     }
 
     .about p, .why-us p {
-      font-size: 0.95em;
+      font-size: 1em; /* Adjusted font size */
       line-height: 1.6;
     }
 
@@ -180,7 +178,7 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      padding: 10px;
+      padding: 10px; /* Added padding for smaller screens */
     }
 
     .hidden {
@@ -189,60 +187,60 @@
 
     .modal-content {
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      width: 95%;
-      max-width: 550px;
+      padding: 20px; /* Adjusted padding */
+      border-radius: 8px; /* Adjusted border-radius */
+      width: 95%; /* Wider on smaller screens */
+      max-width: 550px; /* Adjusted max-width */
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Adjusted shadow */
       position: relative;
       display: flex;
       flex-direction: column;
-      max-height: 95vh;
+      max-height: 95vh; /* Adjusted max height */
       overflow: hidden;
     }
 
     .modal-body {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding-right: 10px;
-      box-sizing: border-box;
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 10px; /* Adjusted padding */
+        box-sizing: border-box;
     }
 
     .modal-close {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 1.4em;
-      cursor: pointer;
-      color: #888;
+        position: absolute;
+        top: 8px; /* Adjusted position */
+        right: 12px; /* Adjusted position */
+        font-size: 1.4em; /* Adjusted font size */
+        cursor: pointer;
+        color: #888;
     }
     .modal-close:hover {
-      color: #333;
+        color: #333;
     }
 
     .modal-content h3 {
       color: var(--color-principal);
-      margin-bottom: 12px;
+      margin-bottom: 12px; /* Adjusted margin */
       font-size: 1.3em;
     }
 
     .modal-content input {
-      width: calc(100% - 20px);
-      padding: 10px;
-      margin-top: 10px;
+      width: calc(100% - 20px); /* Adjusted width */
+      padding: 10px; /* Adjusted padding */
+      margin-top: 10px; /* Adjusted margin */
       border: 1px solid #ddd;
-      border-radius: 4px;
+      border-radius: 4px; /* Adjusted border-radius */
       font-size: 0.95em;
     }
 
     .modal-content button {
-      padding: 10px 18px;
-      margin-top: 18px;
+      padding: 10px 18px; /* Adjusted padding */
+      margin-top: 18px; /* Adjusted margin */
       background-color: var(--color-principal);
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 4px; /* Adjusted border-radius */
       cursor: pointer;
       font-size: 0.95em;
       transition: background-color 0.3s ease;
@@ -253,142 +251,142 @@
     }
 
     #resultado {
-      margin-top: 12px;
-      font-weight: bold;
-      color: var(--texto);
-      white-space: pre-line;
-      font-size: 0.9em;
+        margin-top: 12px; /* Adjusted margin */
+        font-weight: bold;
+        color: var(--texto);
+        white-space: pre-line;
+        font-size: 0.9em;
     }
     #resultado.error {
-      color: #dc3545;
+        color: #dc3545;
     }
 
     /* Estilos específicos para el calendario */
     .calendar-container {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 3px;
-      margin-top: 15px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 0.85em;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px; /* Smaller gap */
+        margin-top: 15px; /* Adjusted margin */
+        max-width: 400px; /* Adjusted max width */
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.85em; /* Adjusted font size */
     }
     .calendar-header {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: var(--color-principal);
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px; /* Adjusted margin */
+        font-size: 1.1em; /* Adjusted font size */
+        font-weight: bold;
+        color: var(--color-principal);
     }
     .calendar-day, .calendar-weekday {
-      padding: 6px;
-      border-radius: 4px;
-      text-align: center;
+        padding: 6px; /* Adjusted padding */
+        border-radius: 4px; /* Adjusted border-radius */
+        text-align: center;
     }
     .calendar-weekday {
-      background-color: var(--color-secundario);
-      color: white;
-      font-weight: bold;
+        background-color: var(--color-secundario);
+        color: white;
+        font-weight: bold;
     }
     .calendar-day {
-      background-color: #f0f0f0;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
     }
     .calendar-day:hover:not(.unavailable):not(.selected-day) {
-      background-color: #e0e0e0;
+        background-color: #e0e0e0;
     }
     .calendar-day.unavailable {
-      background-color: #ffe0e0;
-      color: #888;
-      cursor: not-allowed;
+        background-color: #ffe0e0;
+        color: #888;
+        cursor: not-allowed;
     }
     .calendar-day.selected-day {
-      background-color: var(--color-principal);
-      color: white;
-      font-weight: bold;
+        background-color: var(--color-principal);
+        color: white;
+        font-weight: bold;
     }
     .calendar-nav {
-      cursor: pointer;
-      font-size: 1.3em;
-      padding: 0 3px;
+        cursor: pointer;
+        font-size: 1.3em; /* Adjusted font size */
+        padding: 0 3px; /* Adjusted padding */
     }
 
     .modal-step-2 {
-      text-align: left;
+        text-align: left;
     }
     .modal-step-2 label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-      color: var(--texto);
-      font-size: 0.95em;
+        display: block;
+        margin-top: 12px; /* Adjusted margin */
+        font-weight: bold;
+        color: var(--texto);
+        font-size: 0.95em;
     }
     .modal-step-2 input {
-      width: 100%;
-      margin-top: 4px;
-      margin-bottom: 8px;
+        width: 100%;
+        margin-top: 4px; /* Adjusted margin */
+        margin-bottom: 8px; /* Adjusted margin */
     }
     .modal-step-2 .calendar-info {
-      text-align: center;
-      font-size: 0.8em;
-      color: #666;
-      margin-top: 8px;
+        text-align: center;
+        font-size: 0.8em; /* Adjusted font size */
+        color: #666;
+        margin-top: 8px; /* Adjusted margin */
     }
     .modal-step-2 .whatsapp-button {
-      background-color: #25d366;
+        background-color: #25d366;
     }
     .modal-step-2 .whatsapp-button:hover {
-      background-color: #1da851;
+        background-color: #1da851;
     }
 
     /* Estilos para la selección de horarios */
     .time-slots-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 15px;
-      margin-bottom: 12px;
-      padding: 8px;
-      border: 1px solid #eee;
-      border-radius: 6px;
-      background-color: #f9f9f9;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px; /* Adjusted gap */
+        justify-content: center;
+        margin-top: 15px; /* Adjusted margin */
+        margin-bottom: 12px; /* Adjusted margin */
+        padding: 8px; /* Adjusted padding */
+        border: 1px solid #eee;
+        border-radius: 6px; /* Adjusted border-radius */
+        background-color: #f9f9f9;
     }
     .time-slot-button {
-      padding: 7px 12px;
-      border: 1px solid var(--color-secundario);
-      border-radius: 4px;
-      background-color: white;
-      color: var(--color-principal);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 0.85em;
+        padding: 7px 12px; /* Adjusted padding */
+        border: 1px solid var(--color-secundario);
+        border-radius: 4px; /* Adjusted border-radius */
+        background-color: white;
+        color: var(--color-principal);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.85em; /* Adjusted font size */
     }
     .time-slot-button:hover:not(.unavailable):not(.selected-time) {
-      background-color: var(--color-secundario);
-      color: white;
+        background-color: var(--color-secundario);
+        color: white;
     }
     .time-slot-button.unavailable {
-      background-color: #ffe0e0;
-      color: #888;
-      border-color: #f0c0c0;
-      cursor: not-allowed;
-      opacity: 0.7;
+        background-color: #ffe0e0;
+        color: #888;
+        border-color: #f0c0c0;
+        cursor: not-allowed;
+        opacity: 0.7;
     }
     .time-slot-button.selected-time {
-      background-color: var(--color-principal);
-      color: white;
-      border-color: var(--color-principal);
+        background-color: var(--color-principal);
+        color: white;
+        border-color: var(--color-principal);
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 20px; /* Adjusted padding */
       background-color: var(--color-principal);
       color: white;
       font-size: 0.9em;
@@ -396,82 +394,82 @@
 
     /* Estilos del botón flotante "Volver Arriba" */
     #scrollToTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 15px;
-      left: 15px;
-      z-index: 999;
-      background-color: var(--color-principal);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-      line-height: 45px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
-      opacity: 0.8;
+        display: none;
+        position: fixed;
+        bottom: 15px; /* Closer to bottom */
+        left: 15px; /* Closer to left */
+        z-index: 999;
+        background-color: var(--color-principal);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 45px; /* Slightly smaller */
+        height: 45px;
+        font-size: 20px; /* Adjusted font size */
+        line-height: 45px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Adjusted shadow */
+        transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
+        opacity: 0.8;
     }
 
     #scrollToTopBtn:hover {
-      background-color: #004d99;
-      opacity: 1;
-      transform: translateY(-2px);
+        background-color: #004d99;
+        opacity: 1;
+        transform: translateY(-2px); /* Adjusted hover effect */
     }
 
     /* Estilos para la sección de contacto - NO FLOTANTE */
     .contact-info {
-      padding: 50px 20px;
+      padding: 50px 20px; /* Adjusted padding */
       background-color: var(--gris-fondo);
       text-align: center;
     }
 
     .contact-buttons-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Adjusted gap */
+        margin-top: 25px; /* Adjusted margin */
     }
 
     .contact-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-      opacity: 0.9;
-      flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px; /* Adjusted size */
+        height: 55px;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Adjusted shadow */
+        transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0.9;
+        flex-shrink: 0;
     }
 
     .contact-button img {
-      width: 30px;
-      height: 30px;
+        width: 30px; /* Adjusted logo size */
+        height: 30px;
     }
 
     .contact-button.whatsapp {
-      background-color: #25d366;
+        background-color: #25d366;
     }
 
     .contact-button.gmail {
-      background-color: #dd4b39;
+        background-color: #dd4b39;
     }
 
     .contact-button:hover {
-      opacity: 1;
-      transform: translateY(-2px);
+        opacity: 1;
+        transform: translateY(-2px);
     }
 
     /* Media Queries for enhanced responsiveness */
     @media (max-width: 768px) {
       header {
-        padding: 30px 15px 80px; /* More compact header */
+        padding: 30px 15px 120px; /* Increased bottom padding to prevent nav overlap */
       }
       header h1 {
         font-size: 2.2em;
@@ -480,17 +478,18 @@
         font-size: 1em;
       }
       .main-nav {
-        flex-direction: column;
+        flex-direction: row; /* Keep as row, but allow wrap */
         align-items: center;
         bottom: 15px;
         gap: 8px;
         width: 95%; /* Wider on small screens */
+        position: absolute; /* Ensure it stays at the bottom of the header */
       }
       .nav-button {
-        width: 90%; /* Buttons take more width */
-        max-width: 250px; /* Limit button width */
-        font-size: 1em;
-        padding: 10px 20px;
+        flex-grow: 1; /* Allow buttons to grow and fill space */
+        max-width: 180px; /* Limit button width for better layout on small screens */
+        font-size: 0.9em;
+        padding: 8px 15px;
       }
       section {
         padding: 40px 15px;
@@ -504,10 +503,16 @@
           padding: 0 10px;
       }
       .services {
-        grid-template-columns: 1fr; /* Single column for services on small screens */
+        display: flex; /* Changed to flex for carousel effect */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scroll-snap-type: x mandatory; /* Snap to cards */
+        gap: 20px; /* Adjusted gap */
+        padding-bottom: 15px; /* Add some padding for scrollbar */
       }
       .card {
         padding: 20px;
+        flex: 0 0 250px; /* Slightly smaller card width on tablets */
       }
       .card h3 {
         font-size: 1.2em;
@@ -569,7 +574,7 @@
     @media (max-width: 480px) {
         header {
             padding-top: 25px;
-            padding-bottom: 70px;
+            padding-bottom: 110px; /* Even more bottom padding for very small screens */
         }
         header img {
             width: 120px;
@@ -581,15 +586,14 @@
             font-size: 0.9em;
         }
         .main-nav {
-            flex-direction: column; /* Ensure vertical stacking on very small screens */
-            align-items: center;
-            bottom: 15px;
-            gap: 8px;
-            width: 95%;
+            flex-direction: column; /* Stack buttons vertically on very small screens */
+            width: 100%;
+            bottom: 10px;
         }
         .nav-button {
-            width: 100%; /* Full width buttons on very small screens */
-            max-width: 200px; /* Limit max-width to keep them from being too wide */
+            width: 80%; /* Ensure buttons are not too wide but centered */
+            max-width: 200px;
+            margin: 0 auto; /* Center buttons when stacked */
         }
         .section-title {
             font-size: 1.6em;
@@ -599,11 +603,9 @@
             font-size: 0.9em;
             padding: 0 5px;
         }
-        .services {
-            grid-template-columns: 1fr; /* Explicitly single column for services */
-        }
         .card {
             padding: 18px;
+            flex: 0 0 220px; /* Smaller fixed width for cards on phones */
         }
         .card h3 {
             font-size: 1.1em;
@@ -644,10 +646,6 @@
         .time-slot-button {
             font-size: 0.75em;
             padding: 5px 8px;
-        }
-        .contact-buttons-container {
-            flex-direction: row; /* Keep contact buttons in a row for small screens, they are small enough */
-            gap: 10px;
         }
         .contact-button {
             width: 45px;
@@ -1004,12 +1002,10 @@
     }
 
     function selectDate(date, element) {
-        // If the day is unavailable, do nothing
+        // Si el día ya está seleccionado, deseleccionarlo
         if (element.classList.contains('unavailable')) {
-            return;
+            return; // No hacer nada si el día no está disponible
         }
-
-        // If the same day is clicked, deselect it
         if (selectedDate && selectedDate.toDateString() === date.toDateString()) {
             selectedDate = null;
             element.classList.remove('selected-day');
@@ -1019,21 +1015,18 @@
             document.getElementById('time-slots-title').classList.add('hidden');
             document.getElementById('time-slots-container').classList.add('hidden');
         } else {
-            // Deselect any previously selected day
             const prevSelected = document.querySelector('.calendar-day.selected-day');
             if (prevSelected) {
                 prevSelected.classList.remove('selected-day');
             }
-            // Select the new day
             element.classList.add('selected-day');
             selectedDate = date;
             document.getElementById('selected-date-info').innerText = `Fecha seleccionada: ${date.toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
-            selectedTime = null; // Reset selected time when date changes
+            selectedTime = null;
             document.getElementById('selected-time-info').innerText = '';
             renderTimeSlots();
         }
     }
-
 
     function renderTimeSlots() {
         const timeSlotsContainer = document.getElementById('time-slots-container');
@@ -1127,7 +1120,7 @@
         renderTimeSlots();
         alert('¡Solicitud enviada! El horario ha sido marcado como ocupado para esta sesión.');
 
-        const whatsappURL = `https://wa.me/${COUNTRY_CODE}${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        const whatsappURL = `https://wa.me/${+57}${3239053250}?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, '_blank');
 
         cerrarModal();
