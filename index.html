@@ -3,332 +3,910 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crioser Solutions | Ingeniería en Climatización</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Crioser Solutions | Ingeniería en Climatización de Élite</title>
+    
+    <link rel="icon" href="Logo.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --primary: #0056b3;
-            --secondary: #00d1ff;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --white: #ffffff;
-            --shadow: 0 20px 50px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --azul-oscuro: #004694;
+            --azul-claro: #00d1ff;
+            --azul-glow: rgba(0, 209, 255, 0.3);
+            --gris-fondo: #f8fafc;
+            --texto-principal: #0f172a;
+            --texto-secundario: #475569;
+            --fuente-base: 'Plus Jakarta Sans', sans-serif;
+            --fuente-titulo: 'Outfit', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow-premium: 0 20px 40px rgba(0,0,0,0.06);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* --- NAVEGACIÓN --- */
-        nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 20px 8%;
+        body {
+            margin: 0;
+            font-family: var(--fuente-base);
+            color: var(--texto-secundario);
+            line-height: 1.6;
+            background-color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* --- NIEVE ANIMACIÓN --- */
+        #snow-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 35px; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
 
-        /* --- ESTRUCTURA DE PÁGINAS --- */
-        .page { display: none; padding-top: 100px; animation: fadeIn 0.6s ease-out; }
-        .page.active { display: block; }
+        .logo-container:hover { opacity: 0.8; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-img {
+            height: 50px; 
+            width: auto;
+            display: block;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        .logo-text {
+            font-family: var(--fuente-titulo);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--azul-oscuro);
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
 
-        /* --- INICIO (HERO) --- */
-        .hero { height: 80vh; display: flex; align-items: center; text-align: left; }
-        .hero-content { max-width: 700px; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 4.5rem; line-height: 1; color: var(--primary); margin-bottom: 25px; font-weight: 800; }
-        .hero p { font-size: 1.25rem; color: #64748b; margin-bottom: 40px; }
+        .logo-slogan {
+            font-size: 12px;
+            color: var(--texto-secundario);
+            font-weight: 600;
+            border-left: 2px solid #e2e8f0;
+            padding-left: 15px;
+            line-height: 1.3;
+        }
 
-        .btn { padding: 18px 35px; border-radius: 15px; border: none; font-weight: 700; cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-block; font-family: 'Outfit'; }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.25); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 86, 179, 0.35); }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
-        /* --- SERVICIOS --- */
-        .steps-container { background: var(--primary); color: white; padding: 40px; border-radius: 30px; margin-bottom: 60px; }
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 30px; }
-        .step-item { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; font-size: 0.85rem; }
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .contact-link:hover { transform: translateY(-2px); }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
-        .service-card { background: white; border-radius: 25px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); }
-        .service-card:hover { transform: translateY(-10px); }
-        .card-img { height: 200px; background-size: cover; background-position: center; background-color: #eee; }
-        .card-body { padding: 30px; }
-        .card-body h3 { font-family: 'Outfit'; color: var(--primary); margin-bottom: 15px; }
-        .btn-select { width: 100%; margin-top: 20px; background: #f1f5f9; color: var(--primary); padding: 12px; }
-        .btn-select:hover { background: var(--primary); color: white; }
+        .contact-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-        /* --- NOSOTROS --- */
-        .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 0; }
-        .about-text h2 { font-family: 'Outfit'; font-size: 3rem; color: var(--primary); margin-bottom: 30px; }
-        .why-choose { background: white; padding: 60px; border-radius: 40px; box-shadow: var(--shadow); margin-top: 50px; }
-        .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .why-item { display: flex; gap: 15px; align-items: flex-start; }
-        .why-item b { color: var(--primary); font-family: 'Outfit'; }
+        .contact-box i { font-size: 20px; color: var(--azul-oscuro); }
+        
+        .contact-text span {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        /* --- MODAL Y FORMULARIO --- */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 95%; max-width: 600px; border-radius: 35px; padding: 45px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.8rem; color: var(--primary); text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 1rem; }
-        .price-tag { background: #e0f2fe; color: var(--primary); padding: 20px; border-radius: 15px; text-align: center; font-size: 1.5rem; font-weight: 800; margin: 20px 0; display: none; }
+        .contact-text p { margin: 0; font-size: 13px; font-weight: 700; color: var(--texto-principal); }
 
-        /* --- FOOTER --- */
-        footer { padding: 100px 8% 50px; background: var(--white); text-align: center; margin-top: 100px; border-top: 1px solid #eee; }
-        .footer-cta h2 { font-family: 'Outfit'; font-size: 2.5rem; margin-bottom: 15px; color: var(--primary); }
-        .social-btns { display: flex; justify-content: center; gap: 20px; margin: 40px 0; }
-        .s-btn { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-        .s-btn:hover { transform: scale(1.1) rotate(5deg); }
-        .wa { background: #25d366; } .gm { background: #ea4335; }
-        .s-btn img { width: 30px; filter: brightness(0) invert(1); }
+        .btn-header {
+            background: linear-gradient(135deg, var(--azul-oscuro), #0072ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 8px 20px rgba(0, 70, 148, 0.25);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+        .btn-header:hover { 
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 70, 148, 0.35);
+        }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .about-section { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover { 
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 90vh;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            background-color: #020617; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            filter: brightness(0.6);
+            transform: scale(1.1);
+            transition: opacity 1.5s ease-in-out, transform 10s linear;
+        }
+
+        .hero-bg.active {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-glass-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: var(--fuente-titulo);
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-main {
+            background: white;
+            color: var(--azul-oscuro);
+            padding: 20px 45px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--fuente-titulo);
+            font-size: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255,255,255,0.2); }
+
+        /* --- FEATURES --- */
+        .features {
+            margin-top: -60px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--azul-oscuro), var(--azul-claro));
+            opacity: 0; transition: var(--transition);
+        }
+
+        .card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+        
+        .card:hover::before { opacity: 1; }
+
+        .card i { 
+            font-size: 45px; 
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-claro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 auto;
+        }
+        
+        .card h3 { font-family: var(--fuente-titulo); color: var(--texto-principal); font-size: 1.5rem; margin: 0; }
+        .card p { font-size: 1rem; color: var(--texto-secundario); margin: 0; }
+
+        .btn-card {
+            margin-top: auto;
+            background: var(--azul-oscuro);
+            color: white;
+            padding: 15px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        .btn-card:hover { background: var(--azul-claro); transform: scale(1.05); }
+
+        /* --- PARTNER SECTION --- */
+        .partner { padding: 120px 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+        
+        .partner-left h2 { 
+            font-family: var(--fuente-titulo); 
+            font-size: 3.5rem; 
+            color: var(--texto-principal); 
+            line-height: 1.1; 
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        
+        .stat-box { 
+            padding: 40px; 
+            border-radius: 32px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sb-blue { 
+            background: linear-gradient(135deg, var(--azul-oscuro), #00336d); 
+            color: white; 
+            box-shadow: 0 20px 40px rgba(0, 70, 148, 0.2);
+        }
+
+        .sb-grey { background: #f1f5f9; color: var(--azul-oscuro); }
+
+        .stat-box .number { 
+            font-size: 50px; 
+            font-weight: 800; 
+            display: block; 
+            font-family: var(--fuente-titulo); 
+            margin-bottom: 5px;
+        }
+
+        .image-crop { 
+            width: 100%; 
+            height: 300px; 
+            border-radius: 32px; 
+            object-fit: cover; 
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition);
+        }
+        .image-crop:hover { transform: scale(1.03); }
+
+        /* --- SERVICE SECTION --- */
+        .service-section { background: #f8fafc; padding: 120px 0; border-radius: 60px 60px 0 0; }
+        .service-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+
+        .circle-ui {
+            width: 160px; height: 160px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; font-weight: 800; color: var(--azul-oscuro);
+            background: white; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            font-family: var(--fuente-titulo);
+        }
+
+        .circle-ui svg { position: absolute; transform: rotate(-90deg); width: 160px; height: 160px; }
+        .circle-ui svg circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+        .circle-ui svg .bg { stroke: #f1f5f9; }
+        .circle-ui svg .progress { 
+            stroke: var(--azul-claro); 
+            stroke-dasharray: 472; 
+            stroke-dashoffset: 472;
+            transition: stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- BRANDS --- */
+        .brands-section { padding: 100px 0; text-align: center; background: white; overflow: hidden; }
+        
+        .slider-brands { 
+            display: flex; 
+            width: calc(180px * 20); 
+            animation: scrollBrands 30s linear infinite; 
+            align-items: center;
+        }
+        
+        .brand-slide { 
+            width: 180px; 
+            padding: 0 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0;
+        }
+
+        .brand-slide img { 
+            max-width: 100px;
+            height: auto; 
+            max-height: 50px;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: var(--transition);
+            object-fit: contain;
+        }
+        
+        .brand-slide:hover img { 
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1); 
+        }
+        
+        @keyframes scrollBrands { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(calc(-180px * 10)); }
+        }
+
+        /* --- MODAL --- */
+        .modal { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(2, 6, 23, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none; 
+            justify-content: center; 
+            align-items: flex-start;
+            z-index: 10000; 
+            padding: 40px 20px;
+            overflow-y: auto;
+        }        
+
+        .modal-content { 
+            background: white; padding: 50px; border-radius: 40px; width: 100%; max-width: 580px; 
+            position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 20px;
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 800; font-size: 12px; text-transform: uppercase; color: var(--azul-oscuro); margin-bottom: 10px; letter-spacing: 1px; }
+        .form-group input, .form-group select { 
+            width: 100%; padding: 16px; border-radius: 14px; border: 2px solid #f1f5f9; 
+            font-family: inherit; font-size: 15px; transition: var(--transition);
+        }
+        .form-group input:focus { outline: none; border-color: var(--azul-claro); background: #f0faff; }
+        
+        .price-tag { 
+            background: #f0f9ff; color: var(--azul-oscuro); padding: 25px; border-radius: 20px; 
+            text-align: center; font-size: 2rem; font-weight: 800; margin: 25px 0; 
+            display: none; font-family: var(--fuente-titulo); border: 2px dashed var(--azul-claro);
+        }
+
+        footer { background: #ffffff; padding: 100px 0 50px; border-top: 1px solid #f1f5f9; text-align: center; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .header-right { display: none; }
+            .partner, .service-flex { grid-template-columns: 1fr; gap: 50px; }
+            .hero-content h1 { font-size: 3rem; }
+            .partner-left h2 { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-<a onclick="showPage('home')" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-    <img src="Logo.png" alt="Logo Crioser" style="height: 30px; width: auto; object-fit: contain;">
-    
-    <span>CRIOSER SOLUTIONS</span>
-</a>
-        <div class="nav-links">
-            <a onclick="showPage('home')" id="link-home">INICIO</a>
-            <a onclick="showPage('services')" id="link-services">SERVICIOS</a>
-            <a onclick="showPage('about')" id="link-about">NOSOTROS</a>
-        </div>
-        <a onclick="showPage('services')" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">COTIZAR AHORA</a>
-    </nav>
+    <canvas id="snow-canvas"></canvas>
 
-    <section id="home" class="page active">
-        <div class="container">
-            <div class="hero">
+    <a href="https://wa.me/573239053250" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header class="header">
+        <div class="container header-flex">
+            <a href="#" class="logo-container">
+                <img src="Logo.png" alt="Crioser Logo" class="logo-img">
+                <div class="logo-text">CRIOSER<br>SOLUTIONS</div>
+                <div class="logo-slogan">Ingeniería en<br>Climatización</div>
+            </a>
+
+            <div class="header-right">
+                <a href="mailto:criosersolutions@gmail.com" class="contact-link">
+                    <div class="contact-box">
+                        <i class="far fa-envelope"></i>
+                        <div class="contact-text">
+                            <span>Email Oficial</span>
+                            <p>criosersolutions@gmail.com</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="contact-box">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="contact-text">
+                        <span>Línea Directa</span>
+                        <p>+57 323 905 3250</p>
+                    </div>
+                </div>
+                <button class="btn-header" onclick="document.getElementById('features-scroll').scrollIntoView({behavior:'smooth'})">
+                    COTIZAR AHORA
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-bg slide-1 active" style="background-image: url('Portada\ 1.jpeg');"></div>
+            <div class="hero-bg slide-3" style="background-image: url('Portada\ 4.jpeg');"></div>
+        </div>
+
+        <div class="hero-overlay">
+            <div class="hero-glass-container">
                 <div class="hero-content">
-                    <h1>Expertos en tu Bienestar.</h1>
-                    <p>No solo reparamos equipos, creamos climas perfectos para tu hogar y empresa con garantía certificada.</p>
-                    <div style="display: flex; gap: 20px;">
-                        <button onclick="showPage('services')" class="btn btn-primary">Ver Servicios</button>
-                        <button onclick="showPage('about')" class="btn" style="background: white; border: 1px solid #ddd;">Conocer al Equipo</button>
+                    <h1>Ingeniería de Clima con Precisión.</h1>
+                    <p>Soluciones avanzadas en climatización para hogares y empresas. Garantizamos confort térmico con tecnología de vanguardia.</p>
+                    <div class="hero-btns">
+                        <button class="btn-main" onclick="document.getElementById('features-scroll').scrollIntoView({behavior:'smooth'})">NUESTROS SERVICIOS</button>
+                        <button class="btn-main" style="background:transparent; border:2px solid rgba(255,255,255,0.4); color:white;" onclick="document.getElementById('about-scroll').scrollIntoView({behavior:'smooth'})">SOBRE NOSOTROS</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div style="padding: 100px 0; text-align: center;">
-                <h2 style="font-family: 'Outfit'; margin-bottom: 20px;">¿Cómo navegar esta página?</h2>
-                <p style="max-width: 700px; margin: 0 auto; color: #64748b;">
-                    Nuestra plataforma está diseñada para ser tu centro de soluciones. En <b>Servicios</b> podrás cotizar y agendar automáticamente. En <b>Nosotros</b> descubrirás quiénes somos. Y si necesitas ayuda humana, el botón de <b>WhatsApp</b> al final siempre estará listo.
-                </p>
+    <section class="features" id="features-scroll">
+        <div class="container grid-cards">
+            <div class="card">
+                <i class="fas fa-tools"></i>
+                <h3>Correctivo Aires</h3>
+                <p>Diagnóstico avanzado y reparación inmediata de fallas críticas en sistemas Split y Central.</p>
+                <div class="btn-card" onclick="openBooking('Mantenimiento Correctivo Aires', 30000)">Desde $30.000</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-snowflake"></i>
+                <h3>Preventivo Élite</h3>
+                <p>Limpieza profunda con químicos biodegradables que optimizan el consumo energético.</p>
+                <div class="btn-card" onclick="openBooking('Mantenimiento Preventivo', 50000)">Desde $40.000</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-kitchen-set"></i>
+                <h3>Mantenimiento Integral</h3>
+                <p>Servicio especializado en climatización industrial y doméstica con repuestos originales.</p>
+                <div class="btn-card" onclick="openBooking('Mantenimiento con desmonte', 80000)">Desde $40.000</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h3>Instalaciones</h3>
+                <p>Montaje técnico bajo normas de seguridad, incluyendo vacío de tubería y carga de gas.</p>
+                <div class="btn-card" onclick="openBooking('Instalación Profesional', 120000)">Desde $110.000</div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="page">
-        <div class="container">
-            <div class="steps-container">
-                <h2 style="font-family: 'Outfit';">Servicios que ofrecemos</h2>
-                <p>Para calcular el precio de un servicio y solicitarlo, sigue estos sencillos pasos:</p>
-                <div class="steps-grid">
-                    <div class="step-item"><b>1.</b> Selecciona el servicio deseado.</div>
-                    <div class="step-item"><b>2.</b> Ingresa dirección y barrio.</div>
-                    <div class="step-item"><b>3.</b> Haz clic en "Calcular Precio".</div>
-                    <div class="step-item"><b>4.</b> Elige fecha y hora.</div>
-                    <div class="step-item"><b>5.</b> Envía por WhatsApp para confirmar.</div>
+    <div class="container" id="about-scroll">
+        <section class="partner">
+            <div class="partner-left">
+                <h2>Líderes en Confort Térmico</h2>
+                <p>En <b>Crioser Solutions</b>, transformamos espacios mediante ingeniería climática aplicada. Nuestro equipo técnico certificado asegura que cada intervención sea una inversión en la vida útil de sus equipos.</p>
+                
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:35px; margin: 45px 0;">
+                    <div>
+                        <i class="fas fa-shield-check" style="color:var(--azul-claro); font-size:24px"></i>
+                        <h5 style="color:var(--texto-principal); margin:12px 0; font-size:1.1rem">Garantía Real</h5>
+                        <p style="font-size:14px">Respaldo total en mano de obra y componentes instalados.</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-microchip" style="color:var(--azul-claro); font-size:24px"></i>
+                        <h5 style="color:var(--texto-principal); margin:12px 0; font-size:1.1rem">Tecnología Inverter</h5>
+                        <p style="font-size:14px">Especialistas en sistemas de alta eficiencia energética.</p>
+                    </div>
                 </div>
+
+                <button class="btn-header" style="padding:20px 45px" onclick="window.open('https://wa.me/573239053250')">SOLICITAR ASISTENCIA TÉCNICA</button>
             </div>
 
-<div class="services-grid">
-    <div class="service-card">
-        <div class="card-img" style="background-image: url('Arreglos Aires.jpeg');"></div>
-        <div class="card-body">
-            <h3>Mantenimiento Correctivo - Aires</h3>
-            <p>Detectamos y corregimos fallas en tus aires acondicionados.</p>
-            <button class="btn btn-select" onclick="openBooking('Mantenimiento Correctivo - Aires', 30000)">Cotizar Servicio</button>
-        </div>
+            <div class="stat-grid">
+                <div class="stat-box sb-blue">
+                    <span>Efectividad Operativa</span>
+                    <span class="number" data-target="99.8">0%</span>
+                    <p style="font-size:13px; opacity:0.8">Tasa de éxito en reparaciones</p>
+                </div>
+                <img src="Portada 2.jpeg" class="image-crop" alt="Técnico trabajando">
+                <img src="Propaganda.jpeg" class="image-crop" alt="Mantenimiento preventivo">
+                <div class="stat-box sb-grey">
+                    <span>Proyectos</span>
+                    <span class="number">2.8k+</span>
+                    <p style="font-size:13px">Intervenciones exitosas anuales</p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="service-card">
-        <div class="card-img" style="background-image: url('Areglo Neveras.jpeg');"></div>
-        <div class="card-body">
-            <h3>Mantenimiento Correctivo - Neveras</h3>
-            <p>Reparamos neveras domésticas y comerciales con repuestos de alta calidad.</p>
-            <button class="btn btn-select" onclick="openBooking('Mantenimiento Correctivo - Neveras', 40000)">Cotizar Servicio</button>
-        </div>
-    </div> <div class="service-card">
-        <div class="card-img" style="background-image: url('Mantenimiento Aire.jpeg');"></div>
-        <div class="card-body">
-            <h3>Mantenimiento Preventivo - Aires</h3>
-            <p>Evitamos fallas en tus aires acondicionados para que sigan como nuevos.</p>
-            <button class="btn btn-select" onclick="openBooking('Mantenimiento Preventivo - Aires', 40000)">Cotizar Servicio</button>
-        </div>
-    </div>
-
-    <div class="service-card">
-        <div class="card-img" style="background-image: url('Instalacion Aire.jpeg');"></div>
-        <div class="card-body">
-            <h3>Instalación y Desinstalación</h3>
-            <p>Montaje y desmontaje profesional con kits certificados.</p>
-            <button class="btn btn-select" onclick="openBooking('Instalación y Desinstalación', 90000)">Cotizar Servicio</button>
-        </div>
-    </div>
-</div>            </div>
+    <section class="service-section">
+        <div class="container service-flex">
+            <div style="position:relative">
+                <img src="Portada 3.jpeg" style="width:100%; border-radius:40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="Cobertura Barranquilla">
+                <div style="position:absolute; bottom:20px; left:20px; background:white; padding:15px 25px; border-radius:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1)">
+                    <p style="margin:0; font-weight:800; color:var(--azul-oscuro); font-size:14px"><i class="fas fa-map-marker-alt"></i> Cobertura Total BAQ</p>
+                </div>
+            </div>
+            
+            <div>
+                <h2 style="font-family:var(--fuente-titulo); color:var(--texto-principal); font-size:2.8rem; line-height:1.2; letter-spacing:-1px;">Compromiso con la Calidad Crioser</h2>
+                <p style="margin:30px 0 45px; font-size:1.1rem">Cada servicio es auditado para cumplir con los estándares más exigentes de la industria HVAC.</p>
+                
+                <div style="display:flex; gap:60px; align-items: center;">
+                    <div style="text-align:center">
+                        <div class="circle-ui" id="loader-circle">
+                            <svg width="160" height="160">
+                                <circle class="bg" cx="80" cy="80" r="75"></circle>
+                                <circle class="progress" id="circle-stroke" cx="80" cy="80" r="75"></circle>
+                            </svg>
+                            <span class="number" data-target="100" style="position:relative; z-index:10;">0%</span>
+                        </div>
+                        <h5 style="color:var(--azul-oscuro); margin-top:20px">Satisfacción</h5>
+                    </div>
+                    <div style="max-width:280px">
+                        <div style="background:var(--azul-claro); width:40px; height:4px; margin-bottom:20px"></div>
+                        <h5 style="color:var(--texto-principal); font-size:1.2rem">Soporte 24/7</h5>
+                        <p style="font-size:14px">Atención prioritaria para emergencias en climatización industrial y comercial.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="page">
-        <div class="container">
-            <div class="about-section">
-                <div class="about-text">
-                    <h2> ¿Quiénes somos?</h2>
-                    <p>En <b>Crioser Solutions</b> creemos que un buen clima lo cambia todo. Por eso, no solo arreglamos equipos: creamos ambientes ideales para hogares, negocios y sueños. <br><br> Somos técnicos, sí... pero también somos humanos, cercanos y apasionados por lo que hacemos. Al trabajar con nosotros, no contratas una empresa, te unes a una familia comprometida con tu bienestar.</p>
-                </div>
-                <div style="background: #e2e8f0; height: 450px; border-radius: 40px; background-image: url('Mapa.jpeg'); background-size: cover;"></div>
-            </div>
-
-            <div class="why-choose">
-                <h2 style="font-family: 'Outfit'; color: var(--primary);">💡 ¿Por qué elegirnos?</h2>
-                <div class="why-grid">
-                    <div class="why-item"><b>✔️</b> <span>Técnicos profesionales con experiencia real.</span></div>
-                    <div class="why-item"><b>✔️</b> <span>Precios justos, sin sorpresas ni cobros ocultos.</span></div>
-                    <div class="why-item"><b>✔️</b> <span>Atención personalizada, puntual y amable.</span></div>
-                    <div class="why-item"><b>✔️</b> <span>Calidad garantizada y repuestos originales.</span></div>
-                </div>
-                <p style="margin-top: 30px; font-weight: 700; color: var(--primary);">¡Y porque nuestros clientes nos recomiendan una y otra vez!</p>
-            </div>
+    <section class="brands-section">
+        <p style="margin-bottom:40px; opacity:0.5; text-transform:uppercase; letter-spacing:3px; font-weight:800; font-size:12px;">Servicio Técnico Autorizado & Multimarca</p>
+        <div class="slider-brands">
+            <div class="brand-slide"><img src="LG.png" alt="Logo LG"></div>
+            <div class="brand-slide"><img src="SAMSUNG.png" alt="Logo Samsung"></div>
+            <div class="brand-slide"><img src="MABE.png" alt="Logo Mabe"></div>
+            <div class="brand-slide"><img src="WHIRLPOOL.png" alt="Logo Whirlpool"></div>
+            <div class="brand-slide"><img src="YORK.png" alt="Logo York"></div>
+            <div class="brand-slide"><img src="CARRIER.png" alt="Logo Carrier"></div>
+            <div class="brand-slide"><img src="LENNOX.jpg" alt="Logo Lennox"></div>
+            <div class="brand-slide"><img src="PANASONIC.png" alt="Logo Panasonic"></div>
+            <div class="brand-slide"><img src="CHALLENGER.jpg" alt="Logo Challenger"></div>
+            <div class="brand-slide"><img src="TRANE.svg" alt="Logo Trane"></div>
+            <div class="brand-slide"><img src="LG.png" alt="Logo LG"></div>
+            <div class="brand-slide"><img src="SAMSUNG.png" alt="Logo Samsung"></div>
+            <div class="brand-slide"><img src="MABE.png" alt="Logo Mabe"></div>
+            <div class="brand-slide"><img src="WHIRLPOOL.png" alt="Logo Whirlpool"></div>
+            <div class="brand-slide"><img src="YORK.png" alt="Logo York"></div>
+            <div class="brand-slide"><img src="CARRIER.png" alt="Logo Carrier"></div>
+            <div class="brand-slide"><img src="LENNOX.jpg" alt="Logo Lennox"></div>
+            <div class="brand-slide"><img src="PANASONIC.png" alt="Logo Panasonic"></div>
+            <div class="brand-slide"><img src="CHALLENGER.jpg" alt="Logo Challenger"></div>
+            <div class="brand-slide"><img src="TRANE.svg" alt="Logo Trane"></div>
         </div>
     </section>
 
     <div id="bookingModal" class="modal">
         <div class="modal-content">
-            <h2 id="modalTitle" style="font-family: 'Outfit'; color: var(--primary); margin-bottom: 5px;"></h2>
-            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">Completa los datos para agendar</p>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                    <h2 id="modalTitle" style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:2rem;"></h2>
+                    <p style="font-size:14px; margin-bottom:30px; color:var(--texto-secundario)">Configure los detalles de su requerimiento técnico.</p>
+                </div>
+                <button onclick="closeModal()" style="background:none; border:none; font-size:24px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
             
             <form id="bookingForm">
                 <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="formName" placeholder="Ej. Juan Pérez" required>
+                    <label>Nombre del Solicitante</label>
+                    <input type="text" id="formName" placeholder="Ej. Ricardo Morales" required>
                 </div>
                 <div class="form-group">
-                    <label>Barrio / Zona</label>
+                    <label>Sector de Ubicación</label>
                     <select id="formBarrio" onchange="calculatePrice()">
-                        <option value="0" disabled selected>Selecciona tu zona...</option>
-                        <option value="10000">Norte de Barranquilla </option>
-                        <option value="15000">Sur / Centro </option>
+                        <option value="0" disabled selected>Seleccione su zona...</option>
+                        <option value="15000">Norte de Barranquilla </option>
+                        <option value="10000">Sur / Centro </option>
                         <option value="20000">Soledad / Periferia </option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Dirección Exacta</label>
-                    <input type="text" id="formDir" placeholder="Calle 00 #00 - 00" required>
+                    <input type="text" id="formDir" placeholder="Calle, Carrera, Conjunto, Apto" required>
                 </div>
                 <div class="form-group">
-                    <label>Fecha y Hora Deseada</label>
+                    <label>Fecha y Hora Preferida</label>
                     <input type="datetime-local" id="formDate" required>
                 </div>
 
                 <div id="priceDisplay" class="price-tag"></div>
 
-                <button type="button" onclick="sendWhatsApp()" class="btn btn-primary" style="width: 100%;">ENVIAR POR WHATSAPP</button>
-                <button type="button" onclick="closeModal()" style="width:100%; margin-top:15px; background:none; border:none; color:#94a3b8; font-weight:700; cursor:pointer;">CANCELAR</button>
+                <button type="button" onclick="sendWhatsApp()" class="btn-header" style="width:100%; padding:20px; font-size:15px">
+                    <i class="fab fa-whatsapp"></i> AGENDAR VÍA WHATSAPP
+                </button>
             </form>
         </div>
     </div>
 
     <footer>
-        <div class="footer-cta">
-            <h2>¿Listo para climatizar tu espacio?</h2>
-            <p>Contáctanos para una asesoría personalizada o si tienes alguna duda.</p>
-            <div class="social-btns">
-                <a href="https://wa.me/573239053250" class="s-btn wa"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
-                <a href="mailto:criosersolutions@gmail.com" class="s-btn gm"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail"></a>
+        <div class="container">
+            <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); font-size:2.5rem; letter-spacing:-1px;">¿Su equipo necesita atención?</h2>
+            <p style="margin:20px 0 45px; font-size:1.1rem; color:var(--texto-secundario)">Atendemos en toda el área metropolitana de Barranquilla.</p>
+            <div style="display:flex; justify-content:center; gap:25px;">
+                <a href="https://wa.me/573239053250" style="color:white; background:#25d366; width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:22px; transition:var(--transition);" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:criosersolutions@gmail.com" style="color:white; background:#ea4335; width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:22px; transition:var(--transition);" class="social-btn"><i class="far fa-envelope"></i></a>
+            </div>
+            <div style="margin-top:60px; padding-top:30px; border-top:1px solid #f1f5f9; font-size:13px; color:#94a3b8;">
+                © 2026 Crioser Solutions. Todos los derechos reservados. | Barranquilla, Colombia.
             </div>
         </div>
-        <p style="opacity: 0.5; font-size: 0.8rem;">© 2025 Crioser Solutions – Barranquilla, Colombia</p>
     </footer>
 
     <script>
+        // --- ANIMACIÓN DE NIEVE ---
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeSnow() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeSnow);
+        resizeSnow();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 1 + 0.5;
+                this.velX = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.velX;
+                if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+        function animateSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateSnow);
+        }
+        animateSnow();
+
+        // --- LÓGICA ---
         let currentBasePrice = 0;
         let currentServiceName = "";
 
-        // Sistema de navegación SPA
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            
-            document.getElementById(pageId).classList.add('active');
-            document.getElementById('link-' + pageId)?.classList.add('active');
-            window.scrollTo(0,0);
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-bg');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
+        setInterval(nextSlide, 5000);
 
-        // Modal
         function openBooking(name, basePrice) {
             currentServiceName = name;
-            currentBasePrice = basePrice;
+            currentBasePrice = parseInt(basePrice); // Aseguramos que sea número
             document.getElementById('modalTitle').innerText = name;
             document.getElementById('bookingModal').style.display = 'flex';
             document.getElementById('priceDisplay').style.display = 'none';
             document.getElementById('bookingForm').reset();
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; 
         }
 
         function calculatePrice() {
             const extra = parseInt(document.getElementById('formBarrio').value) || 0;
             const total = currentBasePrice + extra;
             const display = document.getElementById('priceDisplay');
-            display.innerText = "Valor Estimado: $" + total.toLocaleString('es-CO');
-            display.style.display = 'block';
+            if (extra > 0) {
+                display.innerText = "Cotización Estimada: $" + total.toLocaleString('es-CO');
+                display.style.display = 'block';
+            }
         }
 
         function sendWhatsApp() {
             const name = document.getElementById('formName').value;
-            const barrio = document.getElementById('formBarrio').options[document.getElementById('formBarrio').selectedIndex].text;
+            const barrioSelect = document.getElementById('formBarrio');
+            const barrioText = barrioSelect.options[barrioSelect.selectedIndex].text;
             const dir = document.getElementById('formDir').value;
             const dateRaw = document.getElementById('formDate').value;
             
-            if(!name || !dir || !dateRaw || document.getElementById('formBarrio').value == "0") {
-                alert("Por favor completa todos los campos.");
+            if(!name || !dir || !dateRaw || barrioSelect.value == "0") {
+                alert("Por favor, complete todos los campos.");
                 return;
             }
 
-            const extra = parseInt(document.getElementById('formBarrio').value);
-            const total = currentBasePrice + extra;
-            
-            const date = new Date(dateRaw).toLocaleString();
+            const total = currentBasePrice + parseInt(barrioSelect.value);
+            const date = new Date(dateRaw).toLocaleString('es-CO', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+            });
 
-            const text = `*NUEVA SOLICITUD DE SERVICIO*\n\n` +
-                         `⚡ *Servicio:* ${currentServiceName}\n` +
+            const text = `*NUEVA SOLICITUD DE SERVICIO - CRIOSER*\n\n` +
+                         `🛠 *Servicio:* ${currentServiceName}\n` +
                          `👤 *Cliente:* ${name}\n` +
-                         `📍 *Barrio:* ${barrio}\n` +
+                         `📍 *Sector:* ${barrioText}\n` +
                          `🏠 *Dirección:* ${dir}\n` +
-                         `📅 *Fecha:* ${date}\n` +
-                         `💰 *Cotización:* $${total.toLocaleString('es-CO')}\n\n` +
-                         `¡Hola Crioser! Me gustaría confirmar este servicio.`;
+                         `📅 *Fecha Sugerida:* ${date}\n` +
+                         `💰 *Total Estimado:* $${total.toLocaleString('es-CO')}\n\n` +
+                         `_Por favor, confirme disponibilidad._`;
 
-            const url = `https://wa.me/573239053250?text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/573239053250?text=${encodeURIComponent(text)}`, '_blank');
             closeModal();
         }
+
+        const observerOptions = { threshold: 0.3 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetEl = entry.target;
+                    const targetVal = parseFloat(targetEl.getAttribute('data-target'));
+                    if(!targetVal) return;
+                    let currentVal = 0;
+                    const duration = 2000;
+                    const startTime = performance.now();
+
+                    const animate = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        currentVal = progress * targetVal;
+                        targetEl.innerText = (targetVal % 1 === 0 ? Math.floor(currentVal) : currentVal.toFixed(1)) + '%';
+                        if(targetEl.closest('#loader-circle')) {
+                            const offset = 472 - (472 * (currentVal / 100));
+                            document.getElementById('circle-stroke').style.strokeDashoffset = offset;
+                        }
+                        if (progress < 1) requestAnimationFrame(animate);
+                        else targetEl.innerText = targetVal + '%';
+                    };
+                    requestAnimationFrame(animate);
+                    observer.unobserve(targetEl);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.number[data-target]').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
