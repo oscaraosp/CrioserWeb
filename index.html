@@ -24,6 +24,8 @@
             --fuente-titulo: 'Outfit', sans-serif;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             --shadow-premium: 0 20px 40px rgba(0,0,0,0.06);
+            --verde-exito: #10b981;
+            --rojo-error: #ef4444;
         }
 
         * {
@@ -113,7 +115,7 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
 
         .contact-link {
@@ -142,6 +144,25 @@
         }
 
         .contact-text p { margin: 0; font-size: 13px; font-weight: 700; color: var(--texto-principal); }
+
+        .btn-verify {
+            background: transparent;
+            color: var(--azul-oscuro);
+            border: 2px solid var(--azul-oscuro);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-verify:hover {
+            background: var(--azul-oscuro);
+            color: white;
+            transform: translateY(-2px);
+        }
 
         .btn-header {
             background: linear-gradient(135deg, var(--azul-oscuro), #0072ff);
@@ -186,7 +207,7 @@
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
         }
 
-        /* --- HERO --- */
+        /* --- HERO CON VIDEO --- */
         .hero {
             height: 90vh;
             min-height: 700px;
@@ -198,26 +219,15 @@
             justify-content: center;
         }
 
-        .hero-slider {
+        .hero-video-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: 1;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            filter: brightness(0.6);
-            transform: scale(1.1);
-            transition: opacity 1.5s ease-in-out, transform 10s linear;
-        }
-
-        .hero-bg.active {
-            opacity: 0.5;
-            transform: scale(1);
+            filter: brightness(0.4);
         }
 
         .hero-overlay {
@@ -230,6 +240,7 @@
         .hero-glass-container {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 60px 40px;
             border-radius: 40px;
@@ -296,20 +307,18 @@
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
         .card {
             background: white;
-            padding: 45px 35px;
             border-radius: 30px;
             box-shadow: var(--shadow-premium);
             transition: var(--transition);
             border: 1px solid rgba(226, 232, 240, 0.5);
             display: flex;
             flex-direction: column;
-            gap: 20px;
             position: relative;
             overflow: hidden;
             text-align: center;
@@ -321,6 +330,7 @@
             top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--azul-oscuro), var(--azul-claro));
             opacity: 0; transition: var(--transition);
+            z-index: 5;
         }
 
         .card:hover { 
@@ -330,16 +340,34 @@
         
         .card:hover::before { opacity: 1; }
 
-        .card i { 
-            font-size: 45px; 
-            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-claro));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0 auto;
+        .card-img-container {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 30px 25px 35px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
         }
         
-        .card h3 { font-family: var(--fuente-titulo); color: var(--texto-principal); font-size: 1.5rem; margin: 0; }
-        .card p { font-size: 1rem; color: var(--texto-secundario); margin: 0; }
+        .card h3 { font-family: var(--fuente-titulo); color: var(--texto-principal); font-size: 1.4rem; margin: 0; }
+        .card p { font-size: 0.95rem; color: var(--texto-secundario); margin: 0; }
 
         .btn-card {
             margin-top: auto;
@@ -402,6 +430,57 @@
             transition: var(--transition);
         }
         .image-crop:hover { transform: scale(1.03); }
+
+        /* Botón Cuadrado Comercial de Aires */
+        .btn-shop-square {
+            width: 100%;
+            height: 300px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 2px dashed rgba(0, 209, 255, 0.4);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .btn-shop-square:hover {
+            transform: scale(1.03);
+            border-color: var(--azul-claro);
+            background: linear-gradient(135deg, var(--azul-oscuro), #020617);
+            box-shadow: 0 20px 45px rgba(0, 209, 255, 0.15);
+        }
+
+        .btn-shop-square i {
+            font-size: 50px;
+            color: var(--azul-claro);
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        .btn-shop-square span {
+            font-family: var(--fuente-titulo);
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .btn-shop-square p {
+            margin: 0;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 10px var(--azul-claro)); }
+        }
 
         /* --- SERVICE SECTION --- */
         .service-section { background: #f8fafc; padding: 120px 0; border-radius: 60px 60px 0 0; }
@@ -490,6 +569,44 @@
             margin-top: 20px;
         }
 
+        .dynamic-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .verify-result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            display: none;
+            text-align: left;
+        }
+
+        .badge-authorized {
+            background: var(--verde-exito);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .badge-unauthorized {
+            background: var(--rojo-error);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
         @keyframes modalPop {
             from { opacity: 0; transform: scale(0.8) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
@@ -553,6 +670,9 @@
                         <p>+57 323 905 3250</p>
                     </div>
                 </div>
+                <button class="btn-verify" onclick="openVerifyModal()">
+                    VERIFICAR TÉCNICO
+                </button>
                 <button class="btn-header" onclick="document.getElementById('features-scroll').scrollIntoView({behavior:'smooth'})">
                     COTIZAR AHORA
                 </button>
@@ -561,10 +681,10 @@
     </header>
 
     <section class="hero">
-        <div class="hero-slider">
-            <div class="hero-bg slide-1 active" style="background-image: url('Portada\ 1.jpeg');"></div>
-            <div class="hero-bg slide-3" style="background-image: url('Portada\ 4.jpeg');"></div>
-        </div>
+        <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="intro.mp4" type="video/mp4">
+            Tu navegador no soporta videos integrados.
+        </video>
 
         <div class="hero-overlay">
             <div class="hero-glass-container">
@@ -582,29 +702,64 @@
 
     <section class="features" id="features-scroll">
         <div class="container grid-cards">
+            <!-- Servicio 1 -->
             <div class="card">
-                <i class="fas fa-tools"></i>
-                <h3>Correctivo Aires</h3>
-                <p>Diagnóstico avanzado y reparación inmediata de fallas críticas en sistemas Split y Central.</p>
-                <div class="btn-card" onclick="openBooking('Mantenimiento Correctivo Aires', 30000)">Desde $30.000</div>
+                <div class="card-img-container">
+                    <img src="electrico.jpeg" alt="Servicios Eléctricos" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Servicios Eléctricos</h3>
+                    <p>Instalaciones de acometidas, tableros de distribución, diagnóstico de redes y optimización de sistemas eléctricos comerciales y residenciales.</p>
+                    <div class="btn-card" onclick="openBooking('Servicios Eléctricos Especializados', 60000)">Cotizar Servicio</div>
+                </div>
             </div>
+            
+            <!-- Servicio 2 -->
             <div class="card">
-                <i class="fas fa-snowflake"></i>
-                <h3>Preventivo Élite</h3>
-                <p>Limpieza profunda con químicos biodegradables que optimizan el consumo energético.</p>
-                <div class="btn-card" onclick="openBooking('Mantenimiento Preventivo', 50000)">Desde $40.000</div>
+                <div class="card-img-container">
+                    <img src="industriales.jpeg" alt="Equipos Industriales" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Equipos Industriales</h3>
+                    <p>Mantenimiento correctivo, preventivo e instalación técnica de maquinaria industrial. Valor asignado referente a visita técnica.</p>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Equipos Industriales', 90000)">Visita Técnica</div>
+                </div>
             </div>
+
+            <!-- Servicio 3 -->
             <div class="card">
-                <i class="fas fa-kitchen-set"></i>
-                <h3>Mantenimiento Integral</h3>
-                <p>Servicio especializado en climatización industrial y doméstica con repuestos originales.</p>
-                <div class="btn-card" onclick="openBooking('Mantenimiento con desmonte', 80000)">Desde $40.000</div>
+                <div class="card-img-container">
+                    <img src="Preventivo.jpeg" alt="Preventivo Élite" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Preventivo Élite</h3>
+                    <p>Limpieza profunda de aires acondicionados con químicos biodegradables que optimizan el consumo energético.</p>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Preventivo', 40000)">Agendar Servicio</div>
+                </div>
             </div>
+
+            <!-- Servicio 4 -->
             <div class="card">
-                <i class="fas fa-bolt"></i>
-                <h3>Instalaciones</h3>
-                <p>Montaje técnico bajo normas de seguridad, incluyendo vacío de tubería y carga de gas.</p>
-                <div class="btn-card" onclick="openBooking('Instalación Profesional', 120000)">Desde $110.000</div>
+                <div class="card-img-container">
+                    <img src="instalaciones.jpeg" alt="Instalaciones" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Instalaciones HVAC</h3>
+                    <p>Montaje o desinstalación técnica bajo normas internacionales, adaptado para trabajos en altura estructural y residencial.</p>
+                    <div class="btn-card" onclick="openBooking('Instalaciones HVAC', 110000)">Cotizar Sistema</div>
+                </div>
+            </div>
+
+            <!-- Servicio 5 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="correctivo.jpeg" alt="Servicio Correctivo" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Mantenimiento Correctivo</h3>
+                    <p>Diagnóstico inmediato de fallas, corrección de fugas, reemplazo de componentes y reparación integral. Valor referente a visita técnica.</p>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Correctivo', 50000)">Visita Técnica</div>
+                </div>
             </div>
         </div>
     </section>
@@ -638,7 +793,14 @@
                     <p style="font-size:13px; opacity:0.8">Tasa de éxito en reparaciones</p>
                 </div>
                 <img src="Portada 2.jpeg" class="image-crop" alt="Técnico trabajando">
-                <img src="Propaganda.jpeg" class="image-crop" alt="Mantenimiento preventivo">
+                
+                <!-- Reemplazo de Propaganda por el Botón Cuadrado de Compra -->
+                <button class="btn-shop-square" onclick="buyAirConditioner()">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Quiero comprar un aire</span>
+                    <p>Solicite catálogo y disponibilidad inmediata</p>
+                </button>
+
                 <div class="stat-box sb-grey">
                     <span>Proyectos</span>
                     <span class="number">2.8k+</span>
@@ -675,7 +837,7 @@
                     <div style="max-width:280px">
                         <div style="background:var(--azul-claro); width:40px; height:4px; margin-bottom:20px"></div>
                         <h5 style="color:var(--texto-principal); font-size:1.2rem">Soporte 24/7</h5>
-                        <p style="font-size:14px">Atención prioritaria para emergencias en climatización industrial y comercial.</p>
+                        <p style="font-size:14px">Atención prioritaria para emergencies en climatización industrial y comercial.</p>
                     </div>
                 </div>
             </div>
@@ -708,6 +870,7 @@
         </div>
     </section>
 
+    <!-- MODAL DE RESERVAS -->
     <div id="bookingModal" class="modal">
         <div class="modal-content">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
@@ -723,6 +886,29 @@
                     <label>Nombre del Solicitante</label>
                     <input type="text" id="formName" placeholder="Ej. Ricardo Morales" required>
                 </div>
+
+                <!-- Bloque Dinámico para Instalaciones / Desinstalaciones -->
+                <div id="installationOptions" class="dynamic-box" style="display: none;">
+                    <div class="form-group">
+                        <label>Tipo de Trabajo</label>
+                        <select id="formInstType" onchange="calculatePrice()">
+                            <option value="110000" selected>Instalación HVAC</option>
+                            <option value="60000">Desinstalación HVAC</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Es trabajo en altura?</label>
+                        <select id="formInHeight" onchange="toggleFloors()">
+                            <option value="no" selected>No</option>
+                            <option value="si">Sí</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="floorGroup" style="display: none;">
+                        <label>Número de Pisos de Altura</label>
+                        <input type="number" id="formFloors" value="0" min="0" oninput="calculatePrice()">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Sector de Ubicación</label>
                     <select id="formBarrio" onchange="calculatePrice()">
@@ -736,9 +922,11 @@
                     <label>Dirección Exacta</label>
                     <input type="text" id="formDir" placeholder="Calle, Carrera, Conjunto, Apto" required>
                 </div>
+                
+                <!-- Campo de fecha modificado para omitir hora y validar sábados -->
                 <div class="form-group">
-                    <label>Fecha y Hora Preferida</label>
-                    <input type="datetime-local" id="formDate" required>
+                    <label>Fecha Preferida (Lunes a Viernes / Domingo)</label>
+                    <input type="date" id="formDate" onchange="validateDate()" required>
                 </div>
 
                 <div id="priceDisplay" class="price-tag"></div>
@@ -747,6 +935,29 @@
                     <i class="fab fa-whatsapp"></i> AGENDAR VÍA WHATSAPP
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- MODAL VERIFICAR TÉCNICO -->
+    <div id="verifyModal" class="modal">
+        <div class="modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                    <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:2rem;">Verificación de Personal</h2>
+                    <p style="font-size:14px; margin-bottom:30px; color:var(--texto-secundario)">Consulte la legitimidad y estado de su técnico asignado.</p>
+                </div>
+                <button onclick="closeVerifyModal()" style="background:none; border:none; font-size:24px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="form-group">
+                <label>Código del Técnico</label>
+                <input type="text" id="techCode" placeholder="Ingrese el código asignado">
+            </div>
+            <button type="button" onclick="verifyTechnician()" class="btn-header" style="width:100%; padding:15px; font-size:14px">
+                CONSULTAR CREDENCIALES
+            </button>
+
+            <div id="verifyResult" class="verify-result"></div>
         </div>
     </div>
 
@@ -765,6 +976,13 @@
     </footer>
 
     <script>
+        // --- BASE DE DATOS DE TÉCNICOS ---
+        const tecnicosDB = {
+            "TCR042": { nombre: "Lion Piamba", cedula: "1.042.247.724", autorizado: true },
+            "TCR007": { nombre: "Oscar Ospino", cedula: "1.007.964.129", autorizado: true },
+            "TCR": { nombre: "Jorge Eliécer", cedula: "72.345.981", autorizado: false }
+        };
+
         // --- ANIMACIÓN DE NIEVE ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
@@ -809,23 +1027,48 @@
         }
         animateSnow();
 
-        // --- LÓGICA ---
+        // --- ENVIAR MENSAJE COMERCIAL COMPRA DE AIRE ---
+        function buyAirConditioner() {
+            const message = `*CONSULTA COMERCIAL - CRIOSER SOLUTIONS*\n\n` +
+                            `Hola, estoy interesado en adquirir un sistema de climatización.\n` +
+                            `Me gustaría recibir un listado con los aires acondicionados disponibles para la compra, especificaciones y precios.\n\n` +
+                            `_Quedo atento a la información._`;
+            window.open(`https://wa.me/573239053250?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // --- VALIDACIÓN DE CALENDARIO (BLOQUEO DE SÁBADOS) ---
+        function validateDate() {
+            const dateInput = document.getElementById('formDate');
+            if (!dateInput.value) return;
+
+            // Instanciar la fecha teniendo en cuenta el desfase local (YYYY-MM-DD)
+            const dateParts = dateInput.value.split('-');
+            const chosenDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            const dayOfWeek = chosenDate.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+
+            if (dayOfWeek === 6) {
+                alert("Los sábados no contamos con servicio operativo. Por favor seleccione un día de lunes a viernes o domingo.");
+                dateInput.value = "";
+            }
+        }
+
+        // --- LÓGICA DE SERVICIOS ---
         let currentBasePrice = 0;
         let currentServiceName = "";
 
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-bg');
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 5000);
-
         function openBooking(name, basePrice) {
             currentServiceName = name;
-            currentBasePrice = parseInt(basePrice); // Aseguramos que sea número
+            currentBasePrice = parseInt(basePrice); 
             document.getElementById('modalTitle').innerText = name;
+            
+            const instBox = document.getElementById('installationOptions');
+            if (name === "Instalaciones HVAC") {
+                instBox.style.display = 'block';
+                currentBasePrice = parseInt(document.getElementById('formInstType').value);
+            } else {
+                instBox.style.display = 'none';
+            }
+
             document.getElementById('bookingModal').style.display = 'flex';
             document.getElementById('priceDisplay').style.display = 'none';
             document.getElementById('bookingForm').reset();
@@ -837,11 +1080,35 @@
             document.body.style.overflow = 'auto'; 
         }
 
+        function toggleFloors() {
+            const heightSelect = document.getElementById('formInHeight').value;
+            const floorGroup = document.getElementById('floorGroup');
+            if (heightSelect === 'si') {
+                floorGroup.style.display = 'block';
+            } else {
+                floorGroup.style.display = 'none';
+                document.getElementById('formFloors').value = 0;
+            }
+            calculatePrice();
+        }
+
         function calculatePrice() {
-            const extra = parseInt(document.getElementById('formBarrio').value) || 0;
-            const total = currentBasePrice + extra;
+            if (currentServiceName === "Instalaciones HVAC") {
+                currentBasePrice = parseInt(document.getElementById('formInstType').value);
+            }
+
+            const extraBarrio = parseInt(document.getElementById('formBarrio').value) || 0;
+            
+            let extraAltura = 0;
+            if (currentServiceName === "Instalaciones HVAC" && document.getElementById('formInHeight').value === 'si') {
+                const floors = parseInt(document.getElementById('formFloors').value) || 0;
+                extraAltura = Math.floor(floors / 3) * 20000;
+            }
+
+            const total = currentBasePrice + extraBarrio + extraAltura;
             const display = document.getElementById('priceDisplay');
-            if (extra > 0) {
+            
+            if (extraBarrio > 0 || extraAltura > 0 || currentServiceName === "Instalaciones HVAC") {
                 display.innerText = "Cotización Estimada: $" + total.toLocaleString('es-CO');
                 display.style.display = 'block';
             }
@@ -859,24 +1126,91 @@
                 return;
             }
 
-            const total = currentBasePrice + parseInt(barrioSelect.value);
-            const date = new Date(dateRaw).toLocaleString('es-CO', { 
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+            let extraAltura = 0;
+            let detallesInstalacion = "";
+            
+            if (currentServiceName === "Instalaciones HVAC") {
+                const tipoTrabajo = document.getElementById('formInstType').options[document.getElementById('formInstType').selectedIndex].text;
+                const enAltura = document.getElementById('formInHeight').value;
+                const pisos = document.getElementById('formFloors').value;
+                
+                detallesInstalacion = `\n📋 *Detalle Trabajo:* ${tipoTrabajo}\n🏗 *En Altura:* ${enAltura.toUpperCase()}`;
+                if (enAltura === 'si') {
+                    detallesInstalacion += ` (${pisos} Pisos)`;
+                    extraAltura = Math.floor(parseInt(pisos) / 3) * 20000;
+                }
+            }
+
+            const total = currentBasePrice + parseInt(barrioSelect.value) + extraAltura;
+            
+            // Formatear solo la fecha del día
+            const dateParts = dateRaw.split('-');
+            const finalDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]).toLocaleString('es-CO', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
             });
 
             const text = `*NUEVA SOLICITUD DE SERVICIO - CRIOSER*\n\n` +
-                         `🛠 *Servicio:* ${currentServiceName}\n` +
+                         `🛠 *Servicio:* ${currentServiceName}${detallesInstalacion}\n` +
                          `👤 *Cliente:* ${name}\n` +
                          `📍 *Sector:* ${barrioText}\n` +
                          `🏠 *Dirección:* ${dir}\n` +
-                         `📅 *Fecha Sugerida:* ${date}\n` +
+                         `📅 *Día Sugerido:* ${finalDate}\n` +
                          `💰 *Total Estimado:* $${total.toLocaleString('es-CO')}\n\n` +
-                         `_Por favor, confirme disponibilidad._`;
+                         `❓ _Hola, me gustaría agendar el servicio para este día. ¿A qué hora podría ser asignada la visita técnica?_`;
 
             window.open(`https://wa.me/573239053250?text=${encodeURIComponent(text)}`, '_blank');
             closeModal();
         }
 
+        // --- LÓGICA VERIFICAR TÉCNICO ---
+        function openVerifyModal() {
+            document.getElementById('verifyModal').style.display = 'flex';
+            document.getElementById('verifyResult').style.display = 'none';
+            document.getElementById('techCode').value = "";
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVerifyModal() {
+            document.getElementById('verifyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function verifyTechnician() {
+            const code = document.getElementById('techCode').value.trim().toUpperCase();
+            const resultBox = document.getElementById('verifyResult');
+            
+            if(!code) {
+                alert("Por favor ingrese un código.");
+                return;
+            }
+
+            if(tecnicosDB[code]) {
+                const tech = tecnicosDB[code];
+                const badge = tech.autorizado ? 
+                    `<span class="badge-authorized"><i class="fas fa-check-circle"></i> AUTORIZADO</span>` : 
+                    `<span class="badge-unauthorized"><i class="fas fa-times-circle"></i> NO AUTORIZADO</span>`;
+                
+                resultBox.innerHTML = `
+                    <div style="border-left: 4px solid ${tech.autorizado ? 'var(--verde-exito)' : 'var(--rojo-error)'}; padding-left: 15px;">
+                        <p style="margin: 0 0 5px 0; font-weight: 800; color: var(--texto-principal)">Técnico: ${tech.nombre}</p>
+                        <p style="margin: 0 0 10px 0; font-size: 14px;">Cédula: ${tech.cedula}</p>
+                        ${badge}
+                    </div>
+                `;
+                resultBox.style.background = tech.autorizado ? "#f0fdf4" : "#fef2f2";
+            } else {
+                resultBox.innerHTML = `
+                    <div style="border-left: 4px solid var(--rojo-error); padding-left: 15px;">
+                        <p style="margin: 0; font-weight: 800; color: var(--rojo-error)"><i class="fas fa-exclamation-triangle"></i> CÓDIGO NO ENCONTRADO</p>
+                        <p style="margin: 5px 0 0 0; font-size: 13px;">Este código no pertenece a ninguna credencial registrada en Crioser Solutions.</p>
+                    </div>
+                `;
+                resultBox.style.background = "#fef2f2";
+            }
+            resultBox.style.display = "block";
+        }
+
+        // --- INTERSECTION OBSERVER ANIMACIONES ---
         const observerOptions = { threshold: 0.3 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
