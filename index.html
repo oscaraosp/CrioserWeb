@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Crioser Solutions | Ingeniería en Climatización de Élite</title>
     
     <link rel="icon" href="Logo.png" type="image/png">
@@ -17,6 +17,7 @@
             --azul-oscuro: #004694;
             --azul-claro: #00d1ff;
             --azul-glow: rgba(0, 209, 255, 0.3);
+            --naranja-premium: #ff6b00;
             --gris-fondo: #f8fafc;
             --texto-principal: #0f172a;
             --texto-secundario: #475569;
@@ -40,12 +41,14 @@
             line-height: 1.6;
             background-color: white;
             overflow-x: hidden;
+            width: 100%;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 20px;
+            width: 100%;
         }
 
         /* --- NIEVE ANIMACIÓN --- */
@@ -61,7 +64,7 @@
 
         /* --- HEADER --- */
         .header {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: 12px 0;
@@ -81,7 +84,7 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
             transition: var(--transition);
         }
@@ -89,7 +92,7 @@
         .logo-container:hover { opacity: 0.8; }
 
         .logo-img {
-            height: 50px; 
+            height: 45px; 
             width: auto;
             display: block;
         }
@@ -97,18 +100,18 @@
         .logo-text {
             font-family: var(--fuente-titulo);
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--azul-oscuro);
-            line-height: 1;
+            line-height: 1.1;
             letter-spacing: -0.5px;
         }
 
         .logo-slogan {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--texto-secundario);
             font-weight: 600;
             border-left: 2px solid #e2e8f0;
-            padding-left: 15px;
+            padding-left: 12px;
             line-height: 1.3;
         }
 
@@ -129,10 +132,10 @@
         .contact-box {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .contact-box i { font-size: 20px; color: var(--azul-oscuro); }
+        .contact-box i { font-size: 18px; color: var(--azul-oscuro); }
         
         .contact-text span {
             display: block;
@@ -145,29 +148,10 @@
 
         .contact-text p { margin: 0; font-size: 13px; font-weight: 700; color: var(--texto-principal); }
 
-        .btn-verify {
-            background: transparent;
-            color: var(--azul-oscuro);
-            border: 2px solid var(--azul-oscuro);
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-        }
-
-        .btn-verify:hover {
-            background: var(--azul-oscuro);
-            color: white;
-            transform: translateY(-2px);
-        }
-
         .btn-header {
             background: linear-gradient(135deg, var(--azul-oscuro), #0072ff);
             color: white;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
@@ -177,46 +161,72 @@
             cursor: pointer;
             transition: var(--transition);
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
         .btn-header:hover { 
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 12px 25px rgba(0, 70, 148, 0.35);
         }
 
-        /* --- WHATSAPP FLOAT --- */
-        .whatsapp-float {
+        /* --- BOTONES FLOTANTES DE ACCIÓN --- */
+        .floating-actions {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+
+        .whatsapp-float {
             background: #25d366;
             color: white;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 30px;
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 9999;
             text-decoration: none;
             transition: var(--transition);
         }
         .whatsapp-float:hover { 
-            transform: scale(1.15) rotate(10deg);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .verify-float {
+            background: var(--naranja-premium);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .verify-float:hover {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         /* --- HERO CON VIDEO --- */
         .hero {
-            height: 90vh;
-            min-height: 700px;
+            height: 85vh;
+            min-height: 600px;
             position: relative;
             overflow: hidden;
             background-color: #020617; 
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 15px;
         }
 
         .hero-video-bg {
@@ -238,13 +248,13 @@
         }
 
         .hero-glass-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 60px 40px;
-            border-radius: 40px;
-            max-width: 900px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 50px 30px;
+            border-radius: 32px;
+            max-width: 850px;
             margin: 0 auto;
             animation: fadeInUp 1s ease forwards;
         }
@@ -255,68 +265,70 @@
 
         .hero-content h1 {
             font-family: var(--fuente-titulo);
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
             font-weight: 800;
-            line-height: 1;
-            margin-bottom: 25px;
-            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
         }
 
         .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin-bottom: 35px;
             color: rgba(255,255,255,0.9);
-            max-width: 700px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-btns {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn-main {
             background: white;
             color: var(--azul-oscuro);
-            padding: 20px 45px;
-            border-radius: 16px;
+            padding: 16px 36px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 800;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             font-family: var(--fuente-titulo);
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255,255,255,0.2); }
+        .btn-main:hover { transform: translateY(-3px); }
 
         /* --- FEATURES --- */
         .features {
-            margin-top: -60px;
+            margin-top: -40px;
             position: relative;
             z-index: 20;
+            padding-bottom: 60px;
         }
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
         .card {
             background: white;
-            border-radius: 30px;
+            border-radius: 24px;
             box-shadow: var(--shadow-premium);
             transition: var(--transition);
-            border: 1px solid rgba(226, 232, 240, 0.5);
+            border: 1px solid rgba(226, 232, 240, 0.6);
             display: flex;
             flex-direction: column;
             position: relative;
@@ -334,8 +346,8 @@
         }
 
         .card:hover { 
-            transform: translateY(-12px); 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
         }
         
         .card:hover::before { opacity: 1; }
@@ -354,88 +366,91 @@
             transition: var(--transition);
         }
 
-        .card:hover .card-img {
-            transform: scale(1.1);
-        }
+        .card:hover .card-img { transform: scale(1.06); }
 
         .card-body {
-            padding: 30px 25px 35px 25px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             flex-grow: 1;
         }
         
-        .card h3 { font-family: var(--fuente-titulo); color: var(--texto-principal); font-size: 1.4rem; margin: 0; }
-        .card p { font-size: 0.95rem; color: var(--texto-secundario); margin: 0; }
+        .card h3 { font-family: var(--fuente-titulo); color: var(--texto-principal); font-size: 1.3rem; margin: 0; font-weight: 700; }
+        .card p { font-size: 0.92rem; color: var(--texto-secundario); margin: 0; line-height: 1.5; }
 
         .btn-card {
             margin-top: auto;
             background: var(--azul-oscuro);
             color: white;
-            padding: 15px;
-            border-radius: 14px;
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
             font-weight: 800;
             text-decoration: none;
             cursor: pointer;
             transition: var(--transition);
             border: none;
+            font-size: 0.9rem;
         }
-        .btn-card:hover { background: var(--azul-claro); transform: scale(1.05); }
+        .btn-card:hover { background: var(--azul-claro); }
 
         /* --- PARTNER SECTION --- */
-        .partner { padding: 120px 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+        .partner { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         
         .partner-left h2 { 
             font-family: var(--fuente-titulo); 
-            font-size: 3.5rem; 
+            font-size: clamp(2rem, 4vw, 3.2rem); 
             color: var(--texto-principal); 
             line-height: 1.1; 
-            margin-bottom: 30px;
-            letter-spacing: -2px;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
         }
 
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         .stat-box { 
-            padding: 40px; 
-            border-radius: 32px; 
+            padding: 30px 20px; 
+            border-radius: 24px; 
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .sb-blue { 
             background: linear-gradient(135deg, var(--azul-oscuro), #00336d); 
             color: white; 
-            box-shadow: 0 20px 40px rgba(0, 70, 148, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 70, 148, 0.15);
         }
 
         .sb-grey { background: #f1f5f9; color: var(--azul-oscuro); }
 
+        .stat-box span { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; }
+
         .stat-box .number { 
-            font-size: 50px; 
+            font-size: clamp(2rem, 5vw, 3rem); 
             font-weight: 800; 
             display: block; 
             font-family: var(--fuente-titulo); 
-            margin-bottom: 5px;
+            margin: 5px 0;
+            line-height: 1;
         }
 
         .image-crop { 
             width: 100%; 
-            height: 300px; 
-            border-radius: 32px; 
+            height: 250px; 
+            border-radius: 24px; 
             object-fit: cover; 
             box-shadow: var(--shadow-premium);
-            transition: var(--transition);
         }
-        .image-crop:hover { transform: scale(1.03); }
 
         /* Botón Cuadrado Comercial de Aires */
         .btn-shop-square {
             width: 100%;
-            height: 300px;
-            border-radius: 32px;
+            height: 250px;
+            border-radius: 24px;
             background: linear-gradient(135deg, #1e293b, #0f172a);
             border: 2px dashed rgba(0, 209, 255, 0.4);
             color: white;
@@ -443,80 +458,78 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             cursor: pointer;
             transition: var(--transition);
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             box-shadow: var(--shadow-premium);
         }
 
         .btn-shop-square:hover {
-            transform: scale(1.03);
             border-color: var(--azul-claro);
             background: linear-gradient(135deg, var(--azul-oscuro), #020617);
-            box-shadow: 0 20px 45px rgba(0, 209, 255, 0.15);
         }
 
         .btn-shop-square i {
-            font-size: 50px;
+            font-size: 40px;
             color: var(--azul-claro);
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
         .btn-shop-square span {
             font-family: var(--fuente-titulo);
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             font-weight: 800;
             line-height: 1.2;
         }
 
         .btn-shop-square p {
             margin: 0;
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0.7;
         }
 
         @keyframes pulseGlow {
             0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 10px var(--azul-claro)); }
+            50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 8px var(--azul-claro)); }
         }
 
         /* --- SERVICE SECTION --- */
-        .service-section { background: #f8fafc; padding: 120px 0; border-radius: 60px 60px 0 0; }
-        .service-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+        .service-section { background: #f8fafc; padding: 80px 0; border-radius: 40px 40px 0 0; }
+        .service-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 
         .circle-ui {
-            width: 160px; height: 160px; border-radius: 50%;
+            width: 140px; height: 140px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: 800; color: var(--azul-oscuro);
-            background: white; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            font-size: 32px; font-weight: 800; color: var(--azul-oscuro);
+            background: white; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.06);
             font-family: var(--fuente-titulo);
         }
 
-        .circle-ui svg { position: absolute; transform: rotate(-90deg); width: 160px; height: 160px; }
-        .circle-ui svg circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+        .circle-ui svg { position: absolute; transform: rotate(-90deg); width: 140px; height: 140px; }
+        .circle-ui svg circle { fill: none; stroke-width: 8; stroke-linecap: round; cx: 70; cy: 70; r: 65; }
         .circle-ui svg .bg { stroke: #f1f5f9; }
         .circle-ui svg .progress { 
             stroke: var(--azul-claro); 
-            stroke-dasharray: 472; 
-            stroke-dashoffset: 472;
+            stroke-dasharray: 408; 
+            stroke-dashoffset: 408;
             transition: stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* --- BRANDS --- */
-        .brands-section { padding: 100px 0; text-align: center; background: white; overflow: hidden; }
+        .brands-section { padding: 60px 0; text-align: center; background: white; overflow: hidden; }
         
         .slider-brands { 
             display: flex; 
-            width: calc(180px * 20); 
-            animation: scrollBrands 30s linear infinite; 
+            width: calc(150px * 20); 
+            animation: scrollBrands 25s linear infinite; 
             align-items: center;
         }
         
         .brand-slide { 
-            width: 180px; 
-            padding: 0 30px; 
+            width: 150px; 
+            padding: 0 20px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -524,24 +537,17 @@
         }
 
         .brand-slide img { 
-            max-width: 100px;
+            max-width: 90px;
             height: auto; 
-            max-height: 50px;
+            max-height: 40px;
             filter: grayscale(100%);
             opacity: 0.5;
-            transition: var(--transition);
             object-fit: contain;
-        }
-        
-        .brand-slide:hover img { 
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1); 
         }
         
         @keyframes scrollBrands { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-180px * 10)); }
+            100% { transform: translateX(calc(-150px * 10)); }
         }
 
         /* --- MODAL --- */
@@ -551,36 +557,36 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(2, 6, 23, 0.85); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(2, 6, 23, 0.8); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: none; 
             justify-content: center; 
-            align-items: flex-start;
+            align-items: center;
             z-index: 10000; 
-            padding: 40px 20px;
-            overflow-y: auto;
+            padding: 15px;
         }        
 
         .modal-content { 
-            background: white; padding: 50px; border-radius: 40px; width: 100%; max-width: 580px; 
-            position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-top: 20px;
+            background: white; padding: 35px 25px; border-radius: 28px; width: 100%; max-width: 520px; 
+            position: relative; box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .dynamic-box {
             background: #f8fafc;
-            padding: 20px;
-            border-radius: 20px;
+            padding: 15px;
+            border-radius: 16px;
             margin-bottom: 20px;
             border: 1px solid #e2e8f0;
         }
 
         .verify-result {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 16px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
             display: none;
             text-align: left;
         }
@@ -588,52 +594,65 @@
         .badge-authorized {
             background: var(--verde-exito);
             color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
+            padding: 5px 12px;
+            border-radius: 6px;
             font-weight: 800;
-            font-size: 13px;
+            font-size: 12px;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .badge-unauthorized {
             background: var(--rojo-error);
             color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
+            padding: 5px 12px;
+            border-radius: 6px;
             font-weight: 800;
-            font-size: 13px;
+            font-size: 12px;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         @keyframes modalPop {
-            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            from { opacity: 0; transform: scale(0.9) translateY(15px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-weight: 800; font-size: 12px; text-transform: uppercase; color: var(--azul-oscuro); margin-bottom: 10px; letter-spacing: 1px; }
-        .form-group input, .form-group select { 
-            width: 100%; padding: 16px; border-radius: 14px; border: 2px solid #f1f5f9; 
-            font-family: inherit; font-size: 15px; transition: var(--transition);
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--azul-oscuro); margin-bottom: 8px; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 14px; border-radius: 12px; border: 2px solid #f1f5f9; 
+            font-family: inherit; font-size: 14px; transition: var(--transition);
         }
-        .form-group input:focus { outline: none; border-color: var(--azul-claro); background: #f0faff; }
-        
-        .price-tag { 
-            background: #f0f9ff; color: var(--azul-oscuro); padding: 25px; border-radius: 20px; 
-            text-align: center; font-size: 2rem; font-weight: 800; margin: 25px 0; 
-            display: none; font-family: var(--fuente-titulo); border: 2px dashed var(--azul-claro);
-        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--azul-claro); background: #f0faff; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
 
-        footer { background: #ffffff; padding: 100px 0 50px; border-top: 1px solid #f1f5f9; text-align: center; }
+        footer { background: #ffffff; padding: 60px 0 30px; border-top: 1px solid #f1f5f9; text-align: center; }
 
-        /* --- RESPONSIVE --- */
+        /* --- SMARTPHONES Y TABLETS (RESPONSIVE CRÍTICO) --- */
         @media (max-width: 992px) {
             .header-right { display: none; }
-            .partner, .service-flex { grid-template-columns: 1fr; gap: 50px; }
-            .hero-content h1 { font-size: 3rem; }
-            .partner-left h2 { font-size: 2.8rem; }
+            .partner, .service-flex { grid-template-columns: 1fr; gap: 40px; }
+            .partner-left, .service-flex > div { text-align: center; }
+            .partner-left .btn-header { width: 100%; }
+            .stat-grid { gap: 15px; }
+            .service-flex style { display: flex; justify-content: center; }
+            .service-flex div[style*="display:flex"] { justify-content: center; flex-wrap: wrap; gap: 30px; }
+        }
+
+        @media (max-width: 576px) {
+            .logo-slogan { display: none; } /* Ocultar eslogan en pantallas muy chicas para centrar espacio */
+            .hero { height: auto; min-height: 550px; padding: 80px 10px; }
+            .hero-glass-container { padding: 30px 15px; border-radius: 24px; }
+            .hero-btns .btn-main { width: 100%; text-align: center; }
+            .features { margin-top: -20px; padding: 0 10px 40px; }
+            .grid-cards { grid-template-columns: 1fr; gap: 20px; }
+            .stat-grid { grid-template-columns: 1fr; } /* Apilar cajas de estadísticas en vertical */
+            .image-crop, .btn-shop-square { height: 200px; }
+            .modal-content { padding: 25px 15px; border-radius: 20px; }
+            footer h2 { font-size: 1.8rem; }
+            .floating-actions { bottom: 15px; right: 15px; gap: 10px; }
+            .whatsapp-float, .verify-float { width: 52px; height: 52px; font-size: 24px; }
         }
     </style>
 </head>
@@ -641,9 +660,14 @@
 
     <canvas id="snow-canvas"></canvas>
 
-    <a href="https://wa.me/573239053250" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="floating-actions">
+        <a href="https://wa.me/573239053250" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="verify-float" onclick="openVerifyModal()" aria-label="Verificar Técnico">
+            <i class="fas fa-user-gear"></i>
+        </button>
+    </div>
 
     <header class="header">
         <div class="container header-flex">
@@ -670,9 +694,6 @@
                         <p>+57 323 905 3250</p>
                     </div>
                 </div>
-                <button class="btn-verify" onclick="openVerifyModal()">
-                    VERIFICAR TÉCNICO
-                </button>
                 <button class="btn-header" onclick="document.getElementById('features-scroll').scrollIntoView({behavior:'smooth'})">
                     COTIZAR AHORA
                 </button>
@@ -682,7 +703,7 @@
 
     <section class="hero">
         <video class="hero-video-bg" autoplay loop muted playsinline>
-            <source src="Intro.mp4" type="video/mp4">
+            <source src="intro.mp4" type="video/mp4">
             Tu navegador no soporta videos integrados.
         </video>
 
@@ -702,31 +723,28 @@
 
     <section class="features" id="features-scroll">
         <div class="container grid-cards">
-            <!-- Servicio 1 -->
             <div class="card">
                 <div class="card-img-container">
-                    <img src="Electrico.jpeg" alt="Servicios Eléctricos" class="card-img">
+                    <img src="electrico.jpeg" alt="Servicios Eléctricos" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3>Servicios Eléctricos</h3>
-                    <p>Instalaciones de acometidas, tableros de distribución, diagnóstico de redes y optimización de sistemas eléctricos comerciales y residenciales.</p>
-                    <div class="btn-card" onclick="openBooking('Servicios Eléctricos Especializados', 60000)">Cotizar Servicio</div>
+                    <p>Instalaciones de acometidas, tableros de distribución, diagnóstico de redes y optimización de sistemas eléctricos.</p>
+                    <div class="btn-card" onclick="openBooking('Servicios Eléctricos Especializados')">Cotizar Servicio</div>
                 </div>
             </div>
             
-            <!-- Servicio 2 -->
             <div class="card">
                 <div class="card-img-container">
-                    <img src="Industriales.jpeg" alt="Equipos Industriales" class="card-img">
+                    <img src="industriales.jpeg" alt="Equipos Industriales" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3>Equipos Industriales</h3>
-                    <p>Mantenimiento correctivo, preventivo e instalación técnica de maquinaria industrial. Valor asignado referente a visita técnica.</p>
-                    <div class="btn-card" onclick="openBooking('Mantenimiento Equipos Industriales', 90000)">Visita Técnica</div>
+                    <p>Mantenimiento correctivo, preventivo e instalación técnica de maquinaria industrial. Ref. visita técnica.</p>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Equipos Industriales')">Visita Técnica</div>
                 </div>
             </div>
 
-            <!-- Servicio 3 -->
             <div class="card">
                 <div class="card-img-container">
                     <img src="Preventivo.jpeg" alt="Preventivo Élite" class="card-img">
@@ -734,31 +752,40 @@
                 <div class="card-body">
                     <h3>Preventivo Élite</h3>
                     <p>Limpieza profunda de aires acondicionados con químicos biodegradables que optimizan el consumo energético.</p>
-                    <div class="btn-card" onclick="openBooking('Mantenimiento Preventivo', 40000)">Agendar Servicio</div>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Preventivo')">Agendar Servicio</div>
                 </div>
             </div>
 
-            <!-- Servicio 4 -->
             <div class="card">
                 <div class="card-img-container">
-                    <img src="Instalaciones.jpeg" alt="Instalaciones" class="card-img">
+                    <img src="instalaciones.jpeg" alt="Instalaciones" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3>Instalaciones HVAC</h3>
-                    <p>Montaje o desinstalación técnica bajo normas internacionales, adaptado para trabajos en altura estructural y residencial.</p>
-                    <div class="btn-card" onclick="openBooking('Instalaciones HVAC', 110000)">Cotizar Sistema</div>
+                    <p>Montaje o desinstalación técnica bajo normas internacionales, adaptado para trabajos en altura.</p>
+                    <div class="btn-card" onclick="openBooking('Instalaciones HVAC')">Cotizar Sistema</div>
                 </div>
             </div>
 
-            <!-- Servicio 5 -->
             <div class="card">
                 <div class="card-img-container">
-                    <img src="Correctivo.jpeg" alt="Servicio Correctivo" class="card-img">
+                    <img src="correctivo.jpeg" alt="Servicio Correctivo" class="card-img">
                 </div>
                 <div class="card-body">
                     <h3>Mantenimiento Correctivo</h3>
-                    <p>Diagnóstico inmediato de fallas, corrección de fugas, reemplazo de componentes y reparación integral. Valor referente a visita técnica.</p>
-                    <div class="btn-card" onclick="openBooking('Mantenimiento Correctivo', 50000)">Visita Técnica</div>
+                    <p>Diagnóstico inmediato de fallas, corrección de fugas y reparación integral. Ref. visita técnica.</p>
+                    <div class="btn-card" onclick="openBooking('Mantenimiento Correctivo')">Visita Técnica</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="NEVERAS.jpeg" alt="Revisión Técnica de Neveras" class="card-img" onerror="this.src='correctivo.jpeg'">
+                </div>
+                <div class="card-body">
+                    <h3>Servicio Técnico de Neveras</h3>
+                    <p>Revisión técnica especializada, diagnóstico especializado, corrección de fallas y mantenimiento de neveras.</p>
+                    <div class="btn-card" onclick="openBooking('Revisión Técnica de Neveras')">Solicitar Revisión</div>
                 </div>
             </div>
         </div>
@@ -767,34 +794,33 @@
     <div class="container" id="about-scroll">
         <section class="partner">
             <div class="partner-left">
-                <h2>Líderes en Confort Térmico</h2>
-                <p>En <b>Crioser Solutions</b>, transformamos espacios mediante ingeniería climática aplicada. Nuestro equipo técnico certificado asegura que cada intervención sea una inversión en la vida útil de sus equipos.</p>
+                <h2>Líderes en Confort Técnico</h2>
+                <p>En <b>Crioser Solutions</b>, transformamos espacios mediante ingeniería climática aplicada. Nuestro equipo asegura que cada intervención sea una inversión en la vida útil de sus equipos.</p>
                 
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:35px; margin: 45px 0;">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:25px; margin: 35px 0; text-align: left;">
                     <div>
-                        <i class="fas fa-shield-check" style="color:var(--azul-claro); font-size:24px"></i>
-                        <h5 style="color:var(--texto-principal); margin:12px 0; font-size:1.1rem">Garantía Real</h5>
-                        <p style="font-size:14px">Respaldo total en mano de obra y componentes instalados.</p>
+                        <i class="fas fa-shield-check" style="color:var(--azul-claro); font-size:22px"></i>
+                        <h5 style="color:var(--texto-principal); margin:8px 0; font-size:1.05rem">Garantía Real</h5>
+                        <p style="font-size:13px; margin:0;">Respaldo total en mano de obra y componentes instalados.</p>
                     </div>
                     <div>
-                        <i class="fas fa-microchip" style="color:var(--azul-claro); font-size:24px"></i>
-                        <h5 style="color:var(--texto-principal); margin:12px 0; font-size:1.1rem">Tecnología Inverter</h5>
-                        <p style="font-size:14px">Especialistas en sistemas de alta eficiencia energética.</p>
+                        <i class="fas fa-microchip" style="color:var(--azul-claro); font-size:22px"></i>
+                        <h5 style="color:var(--texto-principal); margin:8px 0; font-size:1.05rem">Tecnología Inverter</h5>
+                        <p style="font-size:13px; margin:0;">Especialistas en sistemas de alta eficiencia energética y refrigeración.</p>
                     </div>
                 </div>
 
-                <button class="btn-header" style="padding:20px 45px" onclick="window.open('https://wa.me/573239053250')">SOLICITAR ASISTENCIA TÉCNICA</button>
+                <button class="btn-header" style="padding:18px 40px; font-size: 14px;" onclick="window.open('https://wa.me/573239053250')">SOLICITAR ASISTENCIA TÉCNICA</button>
             </div>
 
             <div class="stat-grid">
                 <div class="stat-box sb-blue">
                     <span>Efectividad Operativa</span>
                     <span class="number" data-target="99.8">0%</span>
-                    <p style="font-size:13px; opacity:0.8">Tasa de éxito en reparaciones</p>
+                    <p style="font-size:12px; opacity:0.8; margin:0;">Tasa de éxito en reparaciones</p>
                 </div>
                 <img src="Portada 2.jpeg" class="image-crop" alt="Técnico trabajando">
                 
-                <!-- Reemplazo de Propaganda por el Botón Cuadrado de Compra -->
                 <button class="btn-shop-square" onclick="buyAirConditioner()">
                     <i class="fas fa-snowflake"></i>
                     <span>Quiero comprar un aire</span>
@@ -804,7 +830,7 @@
                 <div class="stat-box sb-grey">
                     <span>Proyectos</span>
                     <span class="number">2.8k+</span>
-                    <p style="font-size:13px">Intervenciones exitosas anuales</p>
+                    <p style="font-size:12px; margin:0;">Intervenciones exitosas anuales</p>
                 </div>
             </div>
         </section>
@@ -812,32 +838,32 @@
 
     <section class="service-section">
         <div class="container service-flex">
-            <div style="position:relative">
-                <img src="Portada 3.jpeg" style="width:100%; border-radius:40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="Cobertura Barranquilla">
-                <div style="position:absolute; bottom:20px; left:20px; background:white; padding:15px 25px; border-radius:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1)">
-                    <p style="margin:0; font-weight:800; color:var(--azul-oscuro); font-size:14px"><i class="fas fa-map-marker-alt"></i> Cobertura Total BAQ</p>
+            <div style="position:relative; width: 100%;">
+                <img src="Portada 3.jpeg" style="width:100%; border-radius:32px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); display: block;" alt="Cobertura Barranquilla">
+                <div style="position:absolute; bottom:15px; left:15px; background:white; padding:10px 20px; border-radius:14px; box-shadow: 0 10px 20px rgba(0,0,0,0.05)">
+                    <p style="margin:0; font-weight:800; color:var(--azul-oscuro); font-size:13px"><i class="fas fa-map-marker-alt"></i> Cobertura Total BAQ</p>
                 </div>
             </div>
             
             <div>
-                <h2 style="font-family:var(--fuente-titulo); color:var(--texto-principal); font-size:2.8rem; line-height:1.2; letter-spacing:-1px;">Compromiso con la Calidad Crioser</h2>
-                <p style="margin:30px 0 45px; font-size:1.1rem">Cada servicio es auditado para cumplir con los estándares más exigentes de la industria HVAC.</p>
+                <h2 style="font-family:var(--fuente-titulo); color:var(--texto-principal); font-size:2.4rem; line-height:1.2; letter-spacing:-1px;">Compromiso con la Calidad Crioser</h2>
+                <p style="margin:20px 0 35px; font-size:1.05rem">Cada servicio es auditado para cumplir con los estándares más exigentes de la industria HVAC y línea blanca.</p>
                 
-                <div style="display:flex; gap:60px; align-items: center;">
-                    <div style="text-align:center">
+                <div style="display:flex; gap:40px; align-items: center;">
+                    <div style="text-align:center; flex-shrink: 0;">
                         <div class="circle-ui" id="loader-circle">
-                            <svg width="160" height="160">
-                                <circle class="bg" cx="80" cy="80" r="75"></circle>
-                                <circle class="progress" id="circle-stroke" cx="80" cy="80" r="75"></circle>
+                            <svg width="140" height="140">
+                                <circle class="bg" cx="70" cy="70" r="65"></circle>
+                                <circle class="progress" id="circle-stroke" cx="70" cy="70" r="65"></circle>
                             </svg>
                             <span class="number" data-target="100" style="position:relative; z-index:10;">0%</span>
                         </div>
-                        <h5 style="color:var(--azul-oscuro); margin-top:20px">Satisfacción</h5>
+                        <h5 style="color:var(--azul-oscuro); margin-top:15px; margin-bottom: 0;">Satisfacción</h5>
                     </div>
-                    <div style="max-width:280px">
-                        <div style="background:var(--azul-claro); width:40px; height:4px; margin-bottom:20px"></div>
-                        <h5 style="color:var(--texto-principal); font-size:1.2rem">Soporte 24/7</h5>
-                        <p style="font-size:14px">Atención prioritaria para emergencies en climatización industrial y comercial.</p>
+                    <div style="max-width:280px; text-align: left;">
+                        <div style="background:var(--azul-claro); width:35px; height:4px; margin-bottom:15px"></div>
+                        <h5 style="color:var(--texto-principal); font-size:1.15rem; margin: 0 0 8px 0;">Soporte 24/7</h5>
+                        <p style="font-size:13px; margin: 0;">Atención prioritaria para emergencias en climatización comercial y residencial.</p>
                     </div>
                 </div>
             </div>
@@ -845,7 +871,7 @@
     </section>
 
     <section class="brands-section">
-        <p style="margin-bottom:40px; opacity:0.5; text-transform:uppercase; letter-spacing:3px; font-weight:800; font-size:12px;">Servicio Técnico Autorizado & Multimarca</p>
+        <p style="margin-bottom:30px; opacity:0.5; text-transform:uppercase; letter-spacing:2px; font-weight:800; font-size:11px;">Servicio Técnico Autorizado & Multimarca</p>
         <div class="slider-brands">
             <div class="brand-slide"><img src="LG.png" alt="Logo LG"></div>
             <div class="brand-slide"><img src="SAMSUNG.png" alt="Logo Samsung"></div>
@@ -870,15 +896,14 @@
         </div>
     </section>
 
-    <!-- MODAL DE RESERVAS -->
     <div id="bookingModal" class="modal">
         <div class="modal-content">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                 <div>
-                    <h2 id="modalTitle" style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:2rem;"></h2>
-                    <p style="font-size:14px; margin-bottom:30px; color:var(--texto-secundario)">Configure los detalles de su requerimiento técnico.</p>
+                    <h2 id="modalTitle" style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:1.6rem; font-weight:700;"></h2>
+                    <p style="font-size:13px; margin-bottom:20px; color:var(--texto-secundario)">Configure los detalles de su requerimiento técnico.</p>
                 </div>
-                <button onclick="closeModal()" style="background:none; border:none; font-size:24px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
+                <button onclick="closeModal()" style="background:none; border:none; font-size:22px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
             </div>
             
             <form id="bookingForm">
@@ -887,73 +912,100 @@
                     <input type="text" id="formName" placeholder="Ej. Ricardo Morales" required>
                 </div>
 
-                <!-- Bloque Dinámico para Instalaciones / Desinstalaciones -->
                 <div id="installationOptions" class="dynamic-box" style="display: none;">
                     <div class="form-group">
                         <label>Tipo de Trabajo</label>
-                        <select id="formInstType" onchange="calculatePrice()">
-                            <option value="110000" selected>Instalación HVAC</option>
-                            <option value="60000">Desinstalación HVAC</option>
+                        <select id="formInstType">
+                            <option value="Instalación HVAC" selected>Instalación HVAC</option>
+                            <option value="Desinstalación HVAC">Desinstalación HVAC</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>¿Es trabajo en altura?</label>
-                        <select id="formInHeight" onchange="toggleFloors()">
-                            <option value="no" selected>No</option>
-                            <option value="si">Sí</option>
+                        <label>¿En cuántos pisos es la instalación?</label>
+                        <input type="number" id="formFloors" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>¿Se necesita añadir tubería adicional?</label>
+                        <select id="formTuberia">
+                            <option value="No sé / Revisar en sitio">No sé / Revisar en sitio</option>
+                            <option value="No, solo la básica">No, solo la básica</option>
+                            <option value="Sí, requiere metros extras">Sí, requiere metros extras</option>
                         </select>
                     </div>
-                    <div class="form-group" id="floorGroup" style="display: none;">
-                        <label>Número de Pisos de Altura</label>
-                        <input type="number" id="formFloors" value="0" min="0" oninput="calculatePrice()">
+                    <div class="form-group">
+                        <label>¿Necesita par de pie amigos (Soportes)?</label>
+                        <select id="formSoportes">
+                            <option value="No">No</option>
+                            <option value="Sí">Sí</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Necesita recarga de Gas?</label>
+                        <select id="formGas">
+                            <option value="No sé / Diagnosticar">No sé / Diagnosticar</option>
+                            <option value="No">No</option>
+                            <option value="Sí">Sí</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>¿El aire es nuevo o usado?</label>
+                        <select id="formEstadoAire">
+                            <option value="Nuevo (En caja)">Nuevo (En caja)</option>
+                            <option value="Usado">Usado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="neverasOptions" class="dynamic-box" style="display: none;">
+                    <div class="form-group">
+                        <label>Situación o Falla de la Nevera</label>
+                        <textarea id="formNeveraComment" placeholder="Describa brevemente qué le sucede a su equipo..."></textarea>
+                    </div>
+                </div>
+
+                <div id="genericOptions" class="dynamic-box" style="display: none;">
+                    <div class="form-group">
+                        <label>Detalles adicionales</label>
+                        <textarea id="formGenericComment" placeholder="Escriba aquí los detalles de su solicitud..."></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Sector de Ubicación</label>
-                    <select id="formBarrio" onchange="calculatePrice()">
+                    <select id="formBarrio">
                         <option value="0" disabled selected>Seleccione su zona...</option>
-                        <option value="15000">Norte de Barranquilla </option>
-                        <option value="10000">Sur / Centro </option>
-                        <option value="20000">Soledad / Periferia </option>
+                        <option value="Norte de Barranquilla">Norte de Barranquilla </option>
+                        <option value="Sur / Centro">Sur / Centro </option>
+                        <option value="Soledad / Periferia">Soledad / Periferia </option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Dirección Exacta</label>
                     <input type="text" id="formDir" placeholder="Calle, Carrera, Conjunto, Apto" required>
                 </div>
-                
-                <!-- Campo de fecha modificado para omitir hora y validar sábados -->
-                <div class="form-group">
-                    <label>Fecha Preferida (Lunes a Viernes / Domingo)</label>
-                    <input type="date" id="formDate" onchange="validateDate()" required>
-                </div>
 
-                <div id="priceDisplay" class="price-tag"></div>
-
-                <button type="button" onclick="sendWhatsApp()" class="btn-header" style="width:100%; padding:20px; font-size:15px">
-                    <i class="fab fa-whatsapp"></i> AGENDAR VÍA WHATSAPP
+                <button type="button" onclick="sendWhatsApp()" class="btn-header" style="width:100%; padding:16px; font-size:14px">
+                    <i class="fab fa-whatsapp"></i> CONSULTAR VALOR Y DISPONIBILIDAD
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL VERIFICAR TÉCNICO -->
     <div id="verifyModal" class="modal">
         <div class="modal-content">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                 <div>
-                    <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:2rem;">Verificación de Personal</h2>
-                    <p style="font-size:14px; margin-bottom:30px; color:var(--texto-secundario)">Consulte la legitimidad y estado de su técnico asignado.</p>
+                    <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); margin:0 0 5px 0; font-size:1.6rem; font-weight:700;">Verificación de Personal</h2>
+                    <p style="font-size:13px; margin-bottom:20px; color:var(--texto-secundario)">Consulte la legitimidad y estado de su técnico asignado.</p>
                 </div>
-                <button onclick="closeVerifyModal()" style="background:none; border:none; font-size:24px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
+                <button onclick="closeVerifyModal()" style="background:none; border:none; font-size:22px; color:#cbd5e1; cursor:pointer;"><i class="fas fa-times"></i></button>
             </div>
             
             <div class="form-group">
                 <label>Código del Técnico</label>
                 <input type="text" id="techCode" placeholder="Ingrese el código asignado">
             </div>
-            <button type="button" onclick="verifyTechnician()" class="btn-header" style="width:100%; padding:15px; font-size:14px">
+            <button type="button" onclick="verifyTechnician()" class="btn-header" style="width:100%; padding:14px; font-size:13px">
                 CONSULTAR CREDENCIALES
             </button>
 
@@ -963,13 +1015,14 @@
 
     <footer>
         <div class="container">
-            <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); font-size:2.5rem; letter-spacing:-1px;">¿Su equipo necesita atención?</h2>
-            <p style="margin:20px 0 45px; font-size:1.1rem; color:var(--texto-secundario)">Atendemos en toda el área metropolitana de Barranquilla.</p>
-            <div style="display:flex; justify-content:center; gap:25px;">
-                <a href="https://wa.me/573239053250" style="color:white; background:#25d366; width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:22px; transition:var(--transition);" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:criosersolutions@gmail.com" style="color:white; background:#ea4335; width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:22px; transition:var(--transition);" class="social-btn"><i class="far fa-envelope"></i></a>
+            <h2 style="font-family:var(--fuente-titulo); color:var(--azul-oscuro); font-size:2.2rem; letter-spacing:-1px;">¿Su equipo necesita atención?</h2>
+            <p style="margin:15px 0 30px; font-size:1rem; color:var(--texto-secundario)">Atendemos en toda el área metropolitana de Barranquilla.</p>
+            
+            <div style="display:flex; justify-content:center; gap:20px;">
+                <a href="https://wa.me/573239053250" style="color:white; background:#25d366; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:20px; transition:var(--transition);"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:criosersolutions@gmail.com" style="color:white; background:#ea4335; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:20px; transition:var(--transition);"><i class="far fa-envelope"></i></a>
             </div>
-            <div style="margin-top:60px; padding-top:30px; border-top:1px solid #f1f5f9; font-size:13px; color:#94a3b8;">
+            <div style="margin-top:40px; padding-top:20px; border-top:1px solid #f1f5f9; font-size:12px; color:#94a3b8;">
                 © 2026 Crioser Solutions. Todos los derechos reservados. | Barranquilla, Colombia.
             </div>
         </div>
@@ -1000,9 +1053,9 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * -canvas.height;
-                this.size = Math.random() * 3 + 1;
+                this.size = Math.random() * 2.5 + 1;
                 this.speed = Math.random() * 1 + 0.5;
-                this.velX = (Math.random() - 0.5) * 0.5;
+                this.velX = (Math.random() - 0.5) * 0.4;
                 this.opacity = Math.random() * 0.5 + 0.3;
             }
             update() {
@@ -1018,7 +1071,7 @@
             }
         }
 
-        for (let i = 0; i < 120; i++) particles.push(new Particle());
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
 
         function animateSnow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1036,41 +1089,32 @@
             window.open(`https://wa.me/573239053250?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // --- VALIDACIÓN DE CALENDARIO (BLOQUEO DE SÁBADOS) ---
-        function validateDate() {
-            const dateInput = document.getElementById('formDate');
-            if (!dateInput.value) return;
-
-            // Instanciar la fecha teniendo en cuenta el desfase local (YYYY-MM-DD)
-            const dateParts = dateInput.value.split('-');
-            const chosenDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-            const dayOfWeek = chosenDate.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-
-            if (dayOfWeek === 6) {
-                alert("Los sábados no contamos con servicio operativo. Por favor seleccione un día de lunes a viernes o domingo.");
-                dateInput.value = "";
-            }
-        }
-
         // --- LÓGICA DE SERVICIOS ---
-        let currentBasePrice = 0;
         let currentServiceName = "";
 
-        function openBooking(name, basePrice) {
+        function openBooking(name) {
             currentServiceName = name;
-            currentBasePrice = parseInt(basePrice); 
             document.getElementById('modalTitle').innerText = name;
             
             const instBox = document.getElementById('installationOptions');
+            const neverasBox = document.getElementById('neverasOptions');
+            const genericBox = document.getElementById('genericOptions');
+
             if (name === "Instalaciones HVAC") {
                 instBox.style.display = 'block';
-                currentBasePrice = parseInt(document.getElementById('formInstType').value);
+                neverasBox.style.display = 'none';
+                genericBox.style.display = 'none';
+            } else if (name === "Revisión Técnica de Neveras") {
+                instBox.style.display = 'none';
+                neverasBox.style.display = 'block';
+                genericBox.style.display = 'none';
             } else {
                 instBox.style.display = 'none';
+                neverasBox.style.display = 'none';
+                genericBox.style.display = 'block';
             }
 
             document.getElementById('bookingModal').style.display = 'flex';
-            document.getElementById('priceDisplay').style.display = 'none';
             document.getElementById('bookingForm').reset();
             document.body.style.overflow = 'hidden'; 
         }
@@ -1080,85 +1124,53 @@
             document.body.style.overflow = 'auto'; 
         }
 
-        function toggleFloors() {
-            const heightSelect = document.getElementById('formInHeight').value;
-            const floorGroup = document.getElementById('floorGroup');
-            if (heightSelect === 'si') {
-                floorGroup.style.display = 'block';
-            } else {
-                floorGroup.style.display = 'none';
-                document.getElementById('formFloors').value = 0;
-            }
-            calculatePrice();
-        }
-
-        function calculatePrice() {
-            if (currentServiceName === "Instalaciones HVAC") {
-                currentBasePrice = parseInt(document.getElementById('formInstType').value);
-            }
-
-            const extraBarrio = parseInt(document.getElementById('formBarrio').value) || 0;
-            
-            let extraAltura = 0;
-            if (currentServiceName === "Instalaciones HVAC" && document.getElementById('formInHeight').value === 'si') {
-                const floors = parseInt(document.getElementById('formFloors').value) || 0;
-                extraAltura = Math.floor(floors / 3) * 20000;
-            }
-
-            const total = currentBasePrice + extraBarrio + extraAltura;
-            const display = document.getElementById('priceDisplay');
-            
-            if (extraBarrio > 0 || extraAltura > 0 || currentServiceName === "Instalaciones HVAC") {
-                display.innerText = "Cotización Estimada: $" + total.toLocaleString('es-CO');
-                display.style.display = 'block';
-            }
-        }
-
         function sendWhatsApp() {
             const name = document.getElementById('formName').value;
             const barrioSelect = document.getElementById('formBarrio');
-            const barrioText = barrioSelect.options[barrioSelect.selectedIndex].text;
+            const barrioText = barrioSelect.value;
             const dir = document.getElementById('formDir').value;
-            const dateRaw = document.getElementById('formDate').value;
             
-            if(!name || !dir || !dateRaw || barrioSelect.value == "0") {
-                alert("Por favor, complete todos los campos.");
+            if(!name || !dir || barrioSelect.selectedIndex === 0) {
+                alert("Por favor, complete todos los campos obligatorios.");
                 return;
             }
 
-            let extraAltura = 0;
-            let detallesInstalacion = "";
-            
+            let targetPhone = "573145683500"; 
+            let detallesServicio = "";
+
             if (currentServiceName === "Instalaciones HVAC") {
-                const tipoTrabajo = document.getElementById('formInstType').options[document.getElementById('formInstType').selectedIndex].text;
-                const enAltura = document.getElementById('formInHeight').value;
+                const tipoTrabajo = document.getElementById('formInstType').value;
                 const pisos = document.getElementById('formFloors').value;
-                
-                detallesInstalacion = `\n📋 *Detalle Trabajo:* ${tipoTrabajo}\n🏗 *En Altura:* ${enAltura.toUpperCase()}`;
-                if (enAltura === 'si') {
-                    detallesInstalacion += ` (${pisos} Pisos)`;
-                    extraAltura = Math.floor(parseInt(pisos) / 3) * 20000;
-                }
+                const tuberia = document.getElementById('formTuberia').value;
+                const soportes = document.getElementById('formSoportes').value;
+                const gas = document.getElementById('formGas').value;
+                const estadoAire = document.getElementById('formEstadoAire').value;
+
+                detallesServicio = `\n📋 *Detalles de Instalación:*\n` +
+                                   `• Tipo de Trabajo: ${tipoTrabajo}\n` +
+                                   `• Pisos de altura: ${pisos}\n` +
+                                   `• Tubería adicional: ${tuberia}\n` +
+                                   `• Requiere pie amigos: ${soportes}\n` +
+                                   `• Requiere gas: ${gas}\n` +
+                                   `• Estado del aire: ${estadoAire}\n`;
+            } else if (currentServiceName === "Revisión Técnica de Neveras") {
+                targetPhone = "573145683500"; 
+                const comentarioNevera = document.getElementById('formNeveraComment').value || "No se especificaron detalles.";
+                detallesServicio = `\n📋 *Situación de la Nevera:*\n• ${comentarioNevera}\n`;
+            } else {
+                const comentarioGenerico = document.getElementById('formGenericComment').value || "No se especificaron detalles.";
+                detallesServicio = `\n📋 *Detalles Requeridos:*\n• ${comentarioGenerico}\n`;
             }
 
-            const total = currentBasePrice + parseInt(barrioSelect.value) + extraAltura;
-            
-            // Formatear solo la fecha del día
-            const dateParts = dateRaw.split('-');
-            const finalDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]).toLocaleString('es-CO', { 
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
-
-            const text = `*NUEVA SOLICITUD DE SERVICIO - CRIOSER*\n\n` +
-                         `🛠 *Servicio:* ${currentServiceName}${detallesInstalacion}\n` +
+            const text = `*SOLICITUD DE REVISIÓN Y COTIZACIÓN - CRIOSER*\n\n` +
+                         `🛠 *Servicio:* ${currentServiceName}\n` +
                          `👤 *Cliente:* ${name}\n` +
                          `📍 *Sector:* ${barrioText}\n` +
                          `🏠 *Dirección:* ${dir}\n` +
-                         `📅 *Día Sugerido:* ${finalDate}\n` +
-                         `💰 *Total Estimado:* $${total.toLocaleString('es-CO')}\n\n` +
-                         `❓ _Hola, me gustaría agendar el servicio para este día. ¿A qué hora podría ser asignada la visita técnica?_`;
+                         `${detallesServicio}\n` +
+                         `❓ _Hola, me gustaría saber qué valor estimado tendría este servicio y cuándo tendrían disponibilidad para agendar la visita técnica. Quedo atento a su confirmación._`;
 
-            window.open(`https://wa.me/573239053250?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(text)}`, '_blank');
             closeModal();
         }
 
@@ -1193,7 +1205,7 @@
                 resultBox.innerHTML = `
                     <div style="border-left: 4px solid ${tech.autorizado ? 'var(--verde-exito)' : 'var(--rojo-error)'}; padding-left: 15px;">
                         <p style="margin: 0 0 5px 0; font-weight: 800; color: var(--texto-principal)">Técnico: ${tech.nombre}</p>
-                        <p style="margin: 0 0 10px 0; font-size: 14px;">Cédula: ${tech.cedula}</p>
+                        <p style="margin: 0 0 10px 0; font-size: 13px;">Cédula: ${tech.cedula}</p>
                         ${badge}
                     </div>
                 `;
@@ -1202,7 +1214,7 @@
                 resultBox.innerHTML = `
                     <div style="border-left: 4px solid var(--rojo-error); padding-left: 15px;">
                         <p style="margin: 0; font-weight: 800; color: var(--rojo-error)"><i class="fas fa-exclamation-triangle"></i> CÓDIGO NO ENCONTRADO</p>
-                        <p style="margin: 5px 0 0 0; font-size: 13px;">Este código no pertenece a ninguna credencial registrada en Crioser Solutions.</p>
+                        <p style="margin: 5px 0 0 0; font-size: 12px;">Este código no pertenece a ninguna credencial registrada en Crioser Solutions.</p>
                     </div>
                 `;
                 resultBox.style.background = "#fef2f2";
@@ -1211,7 +1223,7 @@
         }
 
         // --- INTERSECTION OBSERVER ANIMACIONES ---
-        const observerOptions = { threshold: 0.3 };
+        const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1228,7 +1240,7 @@
                         currentVal = progress * targetVal;
                         targetEl.innerText = (targetVal % 1 === 0 ? Math.floor(currentVal) : currentVal.toFixed(1)) + '%';
                         if(targetEl.closest('#loader-circle')) {
-                            const offset = 472 - (472 * (currentVal / 100));
+                            const offset = 408 - (408 * (currentVal / 100));
                             document.getElementById('circle-stroke').style.strokeDashoffset = offset;
                         }
                         if (progress < 1) requestAnimationFrame(animate);
